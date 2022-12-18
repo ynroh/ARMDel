@@ -1,0 +1,83 @@
+﻿<Window x:Class="ARMDel.View.AuthorizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ARMDel.View"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Authorization" Height="455" Width="365" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFBBA1DD"/>
+            <GradientStop Color="#FFAA83DA" Offset="0.514"/>
+            <GradientStop Color="#FF8E4BE0" Offset="0.958"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="310"/>
+            <RowDefinition Height="15"/>
+        </Grid.RowDefinitions>
+        <!--Тулбар-->
+        <Grid Name="ToolBar" Grid.Row="0" Background="Transparent" MouseDown="ToolBar_MouseDown">
+            <Polygon Fill="White" Opacity="0.4"
+                 Points="107,0,
+                 115,7,
+                 249,7
+                 257,0"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Image Name="MinButton"  Height="27" Width="27" Margin="0,0,5,0" MouseDown="MinButton_MouseDown">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source" Value="/View/Images/PassiveMinimazeARM.png"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=MinButton}"
+                                             Value="True">
+                                    <Setter Property="Source" Value="/View/Images/ActiveMinimazeARM.png"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+                <Image Name="CloseButton" Height="27" Width="27" Margin="0,2
+                       ,5,0" MouseDown="CloseButton_MouseDown">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source" Value="/View/Images/PassiveCloseARM.png"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=CloseButton}"
+                                             Value="True">
+                                    <Setter Property="Source" Value="/View/Images/ActiveCloseARM.png"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </StackPanel>
+        </Grid>
+        <!--Основная часть-->
+        <Border x:Name="AutorizationBorder" Grid.Row="2" 
+                Height="310" Width="335" 
+                Background="White" Opacity="0.9" 
+                VerticalAlignment="Center" 
+                Padding="30" CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="Gray" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel >
+                <TextBox  Margin="0,20,0,0"
+                          materialDesign:HintAssist.Hint="Введите логин" 
+                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="16">
+                </TextBox>
+                <PasswordBox 
+                             materialDesign:HintAssist.Hint="Введите пароль" 
+                             Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" FontSize="16">
+                </PasswordBox>
+                <Button Content="Войти" Margin="0,40,0,0" Click="Button_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
