@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Study\Programming\ARMDel\App.xaml
-3-1624590446
+92116353176
 
-72116764036
+13332171970
 15167874086
-View\AddingOrder.xaml;View\AuthorizationWindow.xaml;View\MainWindow.xaml;
+View\Admin\AddDistrict.xaml;View\Admin\AddingOperator.xaml;View\AddingOrder.xaml;View\Admin\AddingProduct.xaml;View\Admin\AdminMenu.xaml;View\Admin\ChangeDelPrice.xaml;View\Admin\ChangeProductPrice.xaml;View\AuthorizationWindow.xaml;View\MainWindow.xaml;
 
 False
 

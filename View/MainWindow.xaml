@@ -33,7 +33,7 @@
                     <ColumnDefinition Width="151*"/>
                     <ColumnDefinition Width="569*"/>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="NameOfUser"
+                <TextBox x:Name="OperatorName"
                     Margin="0 0 50 0"
                     HorizontalAlignment="Right" VerticalAlignment="Top"
                     Width="200" FontSize="20" 
@@ -58,7 +58,7 @@
                     HorizontalAlignment="Left" VerticalAlignment="Top"
                     Width="200" FontSize="20"
                     Foreground="#7407fe"
-                    IsReadOnly="True">
+                    IsReadOnly="True" Grid.Column="1" Margin="655,0,0,0">
                 </TextBox>
                 <!--Список заказов-->
                 <DataGrid x:Name="OrderList" Margin="0,109,0,0" Grid.ColumnSpan="2">

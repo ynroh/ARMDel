@@ -25,3 +25,15 @@ D:\Study\Programming\ARMDel\obj\Debug\View\MainWindow.g.cs
 D:\Study\Programming\ARMDel\obj\Debug\View\MainWindow.baml
 D:\Study\Programming\ARMDel\obj\Debug\View\AddingOrder.g.cs
 D:\Study\Programming\ARMDel\obj\Debug\View\AddingOrder.baml
+D:\Study\Programming\ARMDel\obj\Debug\View\Admin\AddingOperator.g.cs
+D:\Study\Programming\ARMDel\obj\Debug\View\Admin\AdminMenu.g.cs
+D:\Study\Programming\ARMDel\obj\Debug\View\Admin\AddingOperator.baml
+D:\Study\Programming\ARMDel\obj\Debug\View\Admin\AdminMenu.baml
+D:\Study\Programming\ARMDel\obj\Debug\View\Admin\AddingProduct.g.cs
+D:\Study\Programming\ARMDel\obj\Debug\View\Admin\AddingProduct.baml
+D:\Study\Programming\ARMDel\obj\Debug\View\Admin\ChangeProductPrice.g.cs
+D:\Study\Programming\ARMDel\obj\Debug\View\Admin\ChangeProductPrice.baml
+D:\Study\Programming\ARMDel\obj\Debug\View\Admin\AddDistrict.g.cs
+D:\Study\Programming\ARMDel\obj\Debug\View\Admin\AddDistrict.baml
+D:\Study\Programming\ARMDel\obj\Debug\View\Admin\ChangeDelPrice.g.cs
+D:\Study\Programming\ARMDel\obj\Debug\View\Admin\ChangeDelPrice.baml

@@ -63,13 +63,55 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="View\Admin\AddDistrict.xaml.cs">
+      <DependentUpon>AddDistrict.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\AddingOperator.xaml.cs">
+      <DependentUpon>AddingOperator.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddingOrder.xaml.cs">
       <DependentUpon>AddingOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\AddingProduct.xaml.cs">
+      <DependentUpon>AddingProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\AdminMenu.xaml.cs">
+      <DependentUpon>AdminMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\ChangeDelPrice.xaml.cs">
+      <DependentUpon>ChangeDelPrice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\ChangeProductPrice.xaml.cs">
+      <DependentUpon>ChangeProductPrice.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\Admin\AddDistrict.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\AddingOperator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddingOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\AddingProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\AdminMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\ChangeDelPrice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\ChangeProductPrice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

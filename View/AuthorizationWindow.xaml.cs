@@ -45,8 +45,9 @@ namespace ARMDel.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainw = new MainWindow();
-            mainw.Show();
+            //MainWindow mainw = new MainWindow();
+            AdminMenu menu = new AdminMenu();
+            menu.Show();
             this.Close();
         }
     }
