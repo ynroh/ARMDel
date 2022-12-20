@@ -90,12 +90,20 @@
                         Visibility="{Binding IsChecked,ElementName=AllDist,Converter={StaticResource b2v}}">
                     </TextBox>
                 </StackPanel>
-                <Button x:Name="ChangeDist"
-                    HorizontalAlignment="Right"
-                    Margin="0,60,0,0"
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="ChPCancel"
+                        Margin="0,60,0,0"
+                        Width="200" Height="40"
+                        Content="Отмена"
+                        Background="#FFBBA1DD"
+                        BorderBrush="LightGray" Cursor="Hand">
+                    </Button>
+                    <Button x:Name="ChangeDist"
+                    Margin="20,60,0,0"
                     Width="200" Height="40"
                     Content="Изменить">
-                </Button>
+                    </Button>
+                </StackPanel>
             </StackPanel>
         </Grid>
     </Grid>

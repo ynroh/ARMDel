@@ -94,6 +94,12 @@
                     Margin="0,30,0,0"
                     Content="Добавить">
                 </Button>
+                <Button x:Name="AddPCancel"
+                    Margin="0,20,0,0"
+                    Content="Отмена"
+                        Background="#FFBBA1DD"
+                    BorderBrush="LightGray">
+                </Button>
             </StackPanel>
         </Grid>
     </Grid>

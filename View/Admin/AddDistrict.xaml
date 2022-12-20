@@ -45,7 +45,14 @@
                 <Button x:Name="AddDist"
                         Content="Добавить"
                         Margin="0,30,0,0"
-                        Width="180" Cursor="Hand">
+                        Width="180">
+                </Button>
+                <Button x:Name="CancelDist"
+                        Content="Отмена"
+                        Margin="0,10,0,0"
+                        Width="180"
+                        Background="#FFBBA1DD"
+                        BorderBrush="LightGray">
                 </Button>
             </StackPanel>
         </Grid>
