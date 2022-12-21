@@ -43,7 +43,17 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=4.6.1.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>packages\MaterialDesignThemes.4.6.1\lib\net462\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Xaml.Behaviors.Wpf.1.1.31\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>packages\Prism.Core.8.1.97\lib\net47\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>packages\Prism.Wpf.8.1.97\lib\net47\Prism.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,10 +69,18 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <ApplicationDefinition Include="Presentation\App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Domain\Entities\Address.cs" />
+    <Compile Include="Domain\Entities\Client.cs" />
+    <Compile Include="Domain\Entities\Courier.cs" />
+    <Compile Include="Domain\Entities\Order.cs" />
+    <Compile Include="Domain\Entities\Product.cs" />
+    <Compile Include="Presentation\ViewModel\AddingOrderViewModel.cs" />
+    <Compile Include="Presentation\ViewModel\AuthorizationWindowViewModel.cs" />
+    <Compile Include="Presentation\ViewModel\MainWindowViewModel.cs" />
     <Compile Include="Presentation\View\Admin\AddDistrict.xaml.cs">
       <DependentUpon>AddDistrict.xaml</DependentUpon>
     </Compile>
@@ -119,7 +137,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="App.xaml.cs">
+    <Compile Include="Presentation\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -157,15 +175,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="Presentation\App.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Files\" />
     <Folder Include="Data\Repository\" />
-    <Folder Include="Domain\Entities\" />
     <Folder Include="Domain\Repository\" />
     <Folder Include="Domain\UseCase\" />
-    <Folder Include="Presentation\ViewModel\" />
+    <Folder Include="Presentation\ViewModel\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Presentation\View\Images\ActiveCloseARM.png" />

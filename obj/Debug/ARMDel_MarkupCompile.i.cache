@@ -9,12 +9,12 @@ ARMDel
 none
 false
 DEBUG;TRACE
-D:\Study\Programming\ARMDel\App.xaml
+D:\Study\Programming\ARMDel\Presentation\App.xaml
 91620249616
 
-14707337652
-15167874086
+221001692197
+19-1195040516
 Presentation\View\Admin\AddDistrict.xaml;Presentation\View\Admin\AddingOperator.xaml;Presentation\View\AddingOrder.xaml;Presentation\View\Admin\AddingProduct.xaml;Presentation\View\Admin\AdminMenu.xaml;Presentation\View\Admin\ChangeDelPrice.xaml;Presentation\View\Admin\ChangeProductPrice.xaml;Presentation\View\AuthorizationWindow.xaml;Presentation\View\MainWindow.xaml;
 
-False
+True
 

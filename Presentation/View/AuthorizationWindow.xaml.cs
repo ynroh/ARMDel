@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ARMDel.Presentation.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,32 +24,7 @@ namespace ARMDel.Presentation.View
         public AuthorizationWindow()
         {
             InitializeComponent();
-        }
-
-        private void CloseButton_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void MinButton_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
-
-        private void ToolBar_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //MainWindow mainw = new MainWindow();
-            AdminMenu menu = new AdminMenu();
-            menu.Show();
-            this.Close();
+            DataContext = new AuthorizationWindowViewModel();
         }
     }
 }

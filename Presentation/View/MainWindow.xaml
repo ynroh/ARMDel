@@ -39,7 +39,25 @@
                     Width="200" FontSize="20" 
                     Foreground="#7407fe"
                     IsReadOnly="True" Grid.Column="1"/>
-                <Image Name="ExitButton"
+                <Button HorizontalAlignment="Right" VerticalAlignment="Top"
+                     Grid.Column="1"
+                        Background="Transparent" Margin="0,4,-11,0"
+                        BorderBrush="Transparent">
+                    <Image Name="ExitButton">
+                        <Image.Style    >
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source" Value="/Presentation/View/Images/PassiveExitARM.png"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsMouseOver, ElementName=ExitButton}"
+                                             Value="True">
+                                        <Setter Property="Source" Value="/Presentation/View/Images/ActiveExitARM.png"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </Button>
+                <!--<Image Name="ExitButton"
                     HorizontalAlignment="Right" VerticalAlignment="Top"
                     Height="35" Width="35" Grid.Column="1">
                     <Image.Style>
@@ -53,7 +71,7 @@
                             </Style.Triggers>
                         </Style>
                     </Image.Style>
-                </Image>
+                </Image>-->
                 <TextBox Name="Date"
                     HorizontalAlignment="Left" VerticalAlignment="Top"
                     Width="200" FontSize="20"
@@ -93,8 +111,8 @@
                         VerticalAlignment="Bottom"
                         HorizontalAlignment="Right"
                         Height="50" Width="200"
-                        Content="Создать заказ" Click="AddOrder_Click" Grid.Column="1">
-                </Button>
+                        Content="Создать заказ" Grid.Column="1"
+                        Command="{Binding OpenAddingOrderWindowCommand}" Cursor="Hand"/>
             </Grid>
         </Border>
     </Grid>

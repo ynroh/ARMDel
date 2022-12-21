@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ARMDel.Presentation.View"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Authorization" Height="455" Width="365" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Authorization" Height="455" Width="365" WindowStyle="ThreeDBorderWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FFBBA1DD"/>
@@ -16,51 +16,22 @@
     </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="0"/>
             <RowDefinition Height="100"/>
-            <RowDefinition Height="310"/>
-            <RowDefinition Height="15"/>
+            <RowDefinition Height="285"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <!--Тулбар-->
-        <Grid Name="ToolBar" Grid.Row="0" Background="Transparent" MouseDown="ToolBar_MouseDown">
+        <Grid Name="ToolBar" Grid.Row="0" Background="Transparent">
             <Polygon Fill="White" Opacity="0.4"
                  Points="107,0,
                  115,7,
                  249,7
                  257,0"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Image Name="MinButton"  Height="27" Width="27" Margin="0,0,5,0" MouseDown="MinButton_MouseDown">
-                    <Image.Style>
-                        <Style TargetType="{x:Type Image}">
-                            <Setter Property="Source" Value="/Presentation/View/Images/PassiveMinimazeARM.png"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=MinButton}"
-                                             Value="True">
-                                    <Setter Property="Source" Value="/Presentation/View/Images/ActiveMinimazeARM.png"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Style>
-                </Image>
-                <Image Name="CloseButton" Height="27" Width="27" Margin="0,2
-                       ,5,0" MouseDown="CloseButton_MouseDown">
-                    <Image.Style>
-                        <Style TargetType="{x:Type Image}">
-                            <Setter Property="Source" Value="/Presentation/View/Images/PassiveCloseARM.png"/> 
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=CloseButton}"
-                                             Value="True">
-                                    <Setter Property="Source" Value="/Presentation/View/Images/ActiveCloseARM.png"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Style>
-                </Image>
-            </StackPanel>
         </Grid>
         <!--Основная часть-->
         <Border x:Name="AutorizationBorder" Grid.Row="2" 
-                Height="310" Width="335" 
+                Height="270" Width="315" 
                 Background="White" Opacity="0.9" 
                 VerticalAlignment="Center" 
                 Padding="30" CornerRadius="20">
@@ -76,7 +47,9 @@
                              materialDesign:HintAssist.Hint="Введите пароль" 
                              Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" FontSize="16">
                 </PasswordBox>
-                <Button Content="Войти" Margin="0,40,0,0" Click="Button_Click"/>
+                <Button Content="Войти" 
+                        Margin="0,40,0,0"
+                        Command="{Binding OpenMainWindowCommand}"  />
             </StackPanel>
         </Border>
     </Grid>

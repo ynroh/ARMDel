@@ -3,7 +3,6 @@ D:\Study\Programming\ARMDel\bin\Debug\ARMDel.exe
 D:\Study\Programming\ARMDel\bin\Debug\ARMDel.pdb
 D:\Study\Programming\ARMDel\obj\Debug\ARMDel.csproj.AssemblyReference.cache
 D:\Study\Programming\ARMDel\obj\Debug\ARMDel.csproj.SuggestedBindingRedirects.cache
-D:\Study\Programming\ARMDel\obj\Debug\App.g.cs
 D:\Study\Programming\ARMDel\obj\Debug\ARMDel_MarkupCompile.cache
 D:\Study\Programming\ARMDel\obj\Debug\ARMDel_MarkupCompile.lref
 D:\Study\Programming\ARMDel\obj\Debug\ARMDel.g.resources
@@ -17,7 +16,6 @@ D:\Study\Programming\ARMDel\bin\Debug\MaterialDesignThemes.Wpf.dll
 D:\Study\Programming\ARMDel\bin\Debug\MaterialDesignColors.pdb
 D:\Study\Programming\ARMDel\bin\Debug\MaterialDesignThemes.Wpf.pdb
 D:\Study\Programming\ARMDel\bin\Debug\MaterialDesignThemes.Wpf.xml
-D:\Study\Programming\ARMDel\obj\Debug\App.baml
 D:\Study\Programming\ARMDel\obj\Debug\ARMDel.csproj.CopyComplete
 D:\Study\Programming\ARMDel\obj\Debug\Presentation\View\Admin\AddDistrict.g.cs
 D:\Study\Programming\ARMDel\obj\Debug\Presentation\View\Admin\AddingOperator.g.cs
@@ -37,3 +35,14 @@ D:\Study\Programming\ARMDel\obj\Debug\Presentation\View\Admin\ChangeDelPrice.bam
 D:\Study\Programming\ARMDel\obj\Debug\Presentation\View\Admin\ChangeProductPrice.baml
 D:\Study\Programming\ARMDel\obj\Debug\Presentation\View\AuthorizationWindow.baml
 D:\Study\Programming\ARMDel\obj\Debug\Presentation\View\MainWindow.baml
+D:\Study\Programming\ARMDel\obj\Debug\Presentation\App.g.cs
+D:\Study\Programming\ARMDel\obj\Debug\Presentation\App.baml
+D:\Study\Programming\ARMDel\bin\Debug\Microsoft.Xaml.Behaviors.dll
+D:\Study\Programming\ARMDel\bin\Debug\Prism.dll
+D:\Study\Programming\ARMDel\bin\Debug\Prism.Wpf.dll
+D:\Study\Programming\ARMDel\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+D:\Study\Programming\ARMDel\bin\Debug\Microsoft.Xaml.Behaviors.xml
+D:\Study\Programming\ARMDel\bin\Debug\Prism.pdb
+D:\Study\Programming\ARMDel\bin\Debug\Prism.xml
+D:\Study\Programming\ARMDel\bin\Debug\Prism.Wpf.pdb
+D:\Study\Programming\ARMDel\bin\Debug\Prism.Wpf.xml

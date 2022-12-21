@@ -37,21 +37,26 @@
                     Width="200" FontSize="20" 
                     Foreground="#7407fe"
                     IsReadOnly="True" Grid.Column="1"/>
-        <Image Name="ExitButton"
-                    HorizontalAlignment="Right" VerticalAlignment="Top"
-                    Height="25" Width="35" RenderTransformOrigin="0.143,1.362" Margin="0,11,20,0">
-            <Image.Style>
-                <Style TargetType="{x:Type Image}">
-                    <Setter Property="Source" Value="/Presentation/View/Images/PassiveExitARM.png"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsMouseOver, ElementName=ExitButton}"
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="87"
+               Background="Transparent" Height="45" Margin="0,-5,-25,0"
+                BorderBrush="Transparent">
+            <Image Name="ExitButton"
+                    Height="25" Width="35"
+                     RenderTransformOrigin="0.143,1.362" Margin="0,11,20,0">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property="Source" Value="/Presentation/View/Images/PassiveExitARM.png"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=ExitButton}"
                                              Value="True">
-                            <Setter Property="Source" Value="/Presentation/View/Images/ActiveExitARM.png"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Image.Style>
-        </Image>
+                                <Setter Property="Source" Value="/Presentation/View/Images/ActiveExitARM.png"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+        </Button>
+
         <!--Меню-->
         <StackPanel 
             Orientation="Vertical"
