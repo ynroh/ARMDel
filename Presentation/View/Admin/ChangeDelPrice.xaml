@@ -1,0 +1,110 @@
+﻿<Window x:Class="ARMDel.Presentation.View.Admin.ChangeDelPrice"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ARMDel.Presentation.View.Admin"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="ChangeProductPrice" Height="450" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFBBA1DD"/>
+            <GradientStop Color="#FFAA83DA" Offset="0.514"/>
+            <GradientStop Color="#FF8E4BE0" Offset="0.958"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="b2v" />
+    </Window.Resources>
+    <Grid>
+        <Border x:Name="AddingOrderBorder" 
+               Width="460" Height="380"
+                Background="White" Opacity="0.9" 
+                Padding="30" CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="Gray" ShadowDepth="0"/>
+            </Border.Effect>
+        </Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="210"/>
+                <ColumnDefinition Width="210"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="350"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <!--поля ввода-->
+            <StackPanel 
+                Orientation="Vertical"
+                VerticalAlignment="Center"
+                Grid.Row="1" Grid.Column="1"  Grid.ColumnSpan="2">
+                <!--выбор-->
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton x:Name="OneDist"
+                        Content="B один район"
+                         IsChecked="True">
+                    </RadioButton>
+                    <RadioButton x:Name="AllDist"
+                        Margin="140,0,0,0"
+                        Content="Для всех районов">
+                    </RadioButton>
+                </StackPanel>
+                <!--один-->
+                <StackPanel 
+                    Orientation="Horizontal">
+                    <TextBox x:Name="DistTitleField"
+                        Width="200"
+                        materialDesign:HintAssist.Hint="Название района" 
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="16"
+                        Visibility="{Binding IsChecked,ElementName=OneDist,Converter={StaticResource b2v}}">
+                    </TextBox>
+                    <ComboBox x:Name="DistChangesType"
+                        Width="200"
+                        Margin="200,20,0,0"
+                        Visibility="{Binding IsChecked,ElementName=AllDist,Converter={StaticResource b2v}}">
+                        <TextBlock Text="Повысить"/>
+                        <TextBlock Text="Снизить"/>
+                    </ComboBox>
+                </StackPanel>
+                <!--все-->
+                <StackPanel 
+                    Orientation="Horizontal">
+                    <TextBox x:Name="DistPriceField"
+                        Width="200"
+                        Margin="0,20,0,0"
+                        materialDesign:HintAssist.Hint="Новая цена" 
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="16"
+                        Visibility="{Binding IsChecked,ElementName=OneDist,Converter={StaticResource b2v}}">
+                    </TextBox>
+                    <TextBox x:Name="DistPercentField"
+                        Width="200"
+                        Margin="200,20,0,0"
+                        materialDesign:HintAssist.Hint="Процент" 
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="16"
+                        Visibility="{Binding IsChecked,ElementName=AllDist,Converter={StaticResource b2v}}">
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="ChPCancel"
+                        Margin="0,60,0,0"
+                        Width="200" Height="40"
+                        Content="Отмена"
+                        Background="#FFBBA1DD"
+                        BorderBrush="LightGray" Cursor="Hand">
+                    </Button>
+                    <Button x:Name="ChangeDist"
+                    Margin="20,60,0,0"
+                    Width="200" Height="40"
+                    Content="Изменить">
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
