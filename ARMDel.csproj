@@ -73,14 +73,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\Repository\AddOrderRepository.cs" />
+    <Compile Include="Data\Repository\AutorizationRepository.cs" />
     <Compile Include="Domain\Entities\Address.cs" />
     <Compile Include="Domain\Entities\Client.cs" />
     <Compile Include="Domain\Entities\Courier.cs" />
+    <Compile Include="Domain\Entities\DataManager.cs" />
+    <Compile Include="Domain\Entities\Operator.cs" />
+    <Compile Include="Domain\Entities\User.cs" />
     <Compile Include="Domain\Entities\Order.cs" />
     <Compile Include="Domain\Entities\Product.cs" />
+    <Compile Include="Domain\Repository\IUser.cs" />
+    <Compile Include="Domain\UseCases\AuthorizationInteractor.cs" />
     <Compile Include="Presentation\ViewModel\AddingOrderViewModel.cs" />
-    <Compile Include="Presentation\ViewModel\AuthorizationWindowViewModel.cs" />
-    <Compile Include="Presentation\ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="Presentation\ViewModel\AdminMenuViewModel.cs" />
+    <Compile Include="Presentation\ViewModel\AuthorizationViewModel.cs" />
+    <Compile Include="Presentation\ViewModel\BaseViewModel.cs" />
+    <Compile Include="Presentation\ViewModel\MainViewModel.cs" />
     <Compile Include="Presentation\View\Admin\AddDistrict.xaml.cs">
       <DependentUpon>AddDistrict.xaml</DependentUpon>
     </Compile>
@@ -179,9 +188,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Files\" />
-    <Folder Include="Data\Repository\" />
-    <Folder Include="Domain\Repository\" />
-    <Folder Include="Domain\UseCase\" />
     <Folder Include="Presentation\ViewModel\Admin\" />
   </ItemGroup>
   <ItemGroup>

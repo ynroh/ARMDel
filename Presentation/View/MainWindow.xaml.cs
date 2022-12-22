@@ -23,7 +23,6 @@ namespace ARMDel.Presentation.View
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
         }
 
     }

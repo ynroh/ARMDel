@@ -8,7 +8,7 @@ using System.Windows.Documents;
 
 namespace ARMDel.Domain.Entities
 {
-    public enum OrderorderForDeliveryStatus
+    public enum OrderStatus
     {
         Added,
         SentToKitchen,
@@ -16,19 +16,12 @@ namespace ARMDel.Domain.Entities
         TransferredToCourier,
         Delivered
     };
-    public enum PickupOrderStatus
-    {
-        Added,
-        SentToKitchen,
-        Ready,
-        GivenToTheClient
-    };
     public enum PaymentMethod
     {
         PaymentByCard,
         PaymentInCash
     };
-    public abstract class Order
+    public class Order
     {
         public DateTime DateOfAdded { get; }
         public DateTime CompletionDate { get; }
@@ -36,11 +29,13 @@ namespace ARMDel.Domain.Entities
         public string OperatorName { get; }
         public Client Client { get; }
         public List<(Product product, int quantity, string note)> Products { get; }
-
+        public OrderStatus Status { get; }
+        public Courier Courier { get; }
+        public decimal DeliveryPrice { get; }
         public PaymentMethod PaymentMethod { get; }
-        public float Cost { get; }
+        public decimal Cost { get; }
 
-        private bool IsNormalParameters(DateTime DateOfAdded, DateTime CompletionDate, int Number, string OperatorName, Client Client, PaymentMethod PaymentMethod, List<(Product product, int quantity, string note)> Products, float Cost)
+        private bool IsNormalParameters(DateTime DateOfAdded, DateTime CompletionDate, int Number, string OperatorName, Client Client, List<(Product product, int quantity, string note)> Products, Courier Courier, decimal DeliveryPrice, decimal Cost)
         {
             bool isNormal = true;
             bool NullDateOfAdded = DateOfAdded == null;
@@ -50,6 +45,8 @@ namespace ARMDel.Domain.Entities
             bool NullClient = Client == null;
             bool NullProducts = Products == null;
             bool InvalidCost = Cost <= 0;
+            bool NullCourier = Courier == null;
+            bool IvalidDeliveryPrice = DeliveryPrice < 0;
             if (NullDateOfAdded)
             {
                 isNormal = false;
@@ -85,12 +82,22 @@ namespace ARMDel.Domain.Entities
                 isNormal = false;
                 throw new ArgumentException("Cost must be greater than 0");
             }
+            else if (NullCourier)
+            {
+                isNormal = false;
+                throw new ArgumentNullException("Null Courier");
+            }
+            else if (IvalidDeliveryPrice)
+            {
+                isNormal = false;
+                throw new ArgumentException("DeliveryPrice must be < 0");
+            }
             return isNormal;
         }
 
-        public Order(DateTime DateOfAdded, DateTime CompletionDate, int Number, string OperatorName, Client Client, PaymentMethod PaymentMethod, List<(Product product, int quantity, string note)> Products, float Cost)
+        public Order(DateTime DateOfAdded, DateTime CompletionDate, int Number, string OperatorName, Client Client, PaymentMethod PaymentMethod, List<(Product product, int quantity, string note)> Products, OrderStatus Status, Courier Courier, decimal DeliveryPrice, decimal Cost)
         {
-            if (IsNormalParameters(DateOfAdded, CompletionDate, Number, OperatorName, Client, PaymentMethod, Products, Cost) == true)
+            if (IsNormalParameters( DateOfAdded,  CompletionDate,  Number,  OperatorName,  Client, Products,  Courier,  DeliveryPrice,  Cost) == true)
             {
                 this.DateOfAdded = DateOfAdded;
                 this.CompletionDate = CompletionDate;
@@ -100,50 +107,10 @@ namespace ARMDel.Domain.Entities
                 this.PaymentMethod = PaymentMethod;
                 this.Cost = Cost;
                 this.Products = Products;
-            }
-        }
-    }
-    public class OrderForDelivery : Order
-    {
-        public OrderorderForDeliveryStatus Status { get; }
-        public Courier Courier { get; }
-        public float DeliveryPrice { get; }
-
-        private bool IsNormalParameters(Courier Courier, float DeliveryPrice)
-        {
-            bool isNormal = true;
-            bool NullCourier = Courier == null;
-            bool IvalidDeliveryPrice = DeliveryPrice <= 0;
-            if (NullCourier)
-            {
-                isNormal = false;
-                throw new ArgumentNullException("Null Courier");
-            }
-            if (IvalidDeliveryPrice)
-            {
-                isNormal = false;
-                throw new ArgumentException("DeliveryPrice must be greater than 0");
-            }
-            return isNormal;
-        }
-
-        public OrderForDelivery(DateTime DateOfAdded, DateTime CompletionDate, int Number, string OperatorName, Client Client, PaymentMethod PaymentMethod, List<(Product product, int quantity, string note)> Products, float Cost, OrderorderForDeliveryStatus Status, Courier Courier, float DeliveryPrice) : base(DateOfAdded, CompletionDate, Number, OperatorName, Client, PaymentMethod, Products, Cost)
-        {
-            if (IsNormalParameters(Courier, DeliveryPrice) == true)
-            {
                 this.Status = Status;
                 this.Courier = Courier;
                 this.DeliveryPrice = DeliveryPrice;
             }
-        }
-    }
-
-    public class PickupOrder : Order
-    {
-        public PickupOrderStatus Status { get; }
-        public PickupOrder(DateTime DateOfAdded, DateTime CompletionDate, int Number, string OperatorName, Client Client, PaymentMethod PaymentMethod, List<(Product product, int quantity, string note)> Products, float Cost, PickupOrderStatus Status) : base(DateOfAdded, CompletionDate, Number, OperatorName, Client, PaymentMethod, Products, Cost)
-        {
-            this.Status = Status;
         }
     }
 }

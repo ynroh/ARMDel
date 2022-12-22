@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ARMDel.Presentation.View"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewmodel="clr-namespace:ARMDel.Presentation.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AuthorizationViewModel}"
         mc:Ignorable="d"
         Title="Authorization" Height="455" Width="365" WindowStyle="ThreeDBorderWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Background>
@@ -39,17 +39,25 @@
                 <DropShadowEffect BlurRadius="30" Color="Gray" ShadowDepth="0"/>
             </Border.Effect>
             <StackPanel >
-                <TextBox  Margin="0,20,0,0"
+                <TextBox 
+                    Margin="0,20,0,0"
+                          Text="{Binding Login}"
                           materialDesign:HintAssist.Hint="Введите логин" 
                           Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="16">
                 </TextBox>
-                <PasswordBox 
-                             materialDesign:HintAssist.Hint="Введите пароль" 
-                             Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" FontSize="16">
-                </PasswordBox>
+                <TextBox 
+                    Margin="0,20,0,0"
+                    Text="{Binding Password}"
+                    materialDesign:HintAssist.Hint="Введите пароль" 
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="16">
+                </TextBox>
+                <!--<PasswordBox x:Name="pass"
+                    materialDesign:HintAssist.Hint="Введите пароль" 
+                    Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" FontSize="16">
+                </PasswordBox>-->
                 <Button Content="Войти" 
                         Margin="0,40,0,0"
-                        Command="{Binding OpenMainWindowCommand}"  />
+                        Command="{Binding AuthorizeCommand}"  />
             </StackPanel>
         </Border>
     </Grid>

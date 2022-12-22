@@ -41,6 +41,26 @@
                 </TextBlock>
             </Border>
         </Border>
+        <StackPanel 
+            Orientation="Horizontal"
+            Height="50" Width="450" 
+            Margin="1030,645,76,107">
+            <TextBox
+                IsReadOnly="True"
+                Width="200" 
+                HorizontalAlignment="Left"
+                materialDesign:HintAssist.Hint="Стоимость доставки" 
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="16">
+            </TextBox>
+            <TextBox
+                IsReadOnly="True"
+                Width="200" 
+                Margin="30,0,0,0"
+                HorizontalAlignment="Left"
+                materialDesign:HintAssist.Hint="Сумма заказа" 
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="16">
+            </TextBox>
+        </StackPanel>
         <!--Основная часть-->
         <Grid 
               Height="788" Width="930" 
@@ -212,20 +232,14 @@
                     />
             </StackPanel>
         </Grid>
-        <!--Кнопки-->
+        <!--Кнопка-->
         <StackPanel 
             Orientation="Horizontal" 
-            Margin="1000,744,28,32">
-            <Button
-                Content="Отмена"
-                HorizontalAlignment="Left"
-                Height="50" Width="240"
-                Background="#FFBBA1DD"
-                BorderBrush="LightGray">
-            </Button>
+            Margin="0,750,76,26"
+            HorizontalAlignment="Right">
             <Button
                 Content="Сохранить"
-                HorizontalAlignment="Right"
+                
                 Margin="10,0,0,0"
                 Height="50" Width="240">
             </Button>
