@@ -12,17 +12,42 @@ namespace ARMDel.Domain.Entities
     public static class DataManager
     {
         static public IUser currentUser;
-        static public List<User> AllUsers = new List<User>();
-        static public List<Order> AllOrders { get; }
-        //static public List<User> AllUsers { get;}
-        static public List<Product> AllProducts { get;}
-        static public List<Courier> AllCouriers { get;}
+
+        static private List<User> allUsers = new List<User>();
+        static private List<Order> allOrders = new List<Order>();
+        static private List<Product> allProducts = new List<Product>();
+        static private List<Courier> allCouriers = new List<Courier>();
+
+        #region PROPERTYS
+        static public List<User> AllUsers
+        {
+            get { return allUsers; }
+        }
+
+        static public List<Order> AllOrders
+        {
+            get { return allOrders; }
+            set { allOrders = value; }
+        }
+
+        static public List<Product> AllProducts
+        {
+            get { return allProducts; }
+            set { allProducts = value; }
+        }
+
+        static public List<Courier> AllCouriers
+        {
+            get { return allCouriers; }
+            set { allCouriers = value; }
+        }
+        #endregion
 
         static public void AddOrder(Order order)
         {
             AllOrders.Add(order);
         }
-        static public void AddOperator(Operator oper)
+        static public void AddOperator(User oper)
         {
             AllUsers.Add(oper);
         }

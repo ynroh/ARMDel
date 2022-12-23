@@ -2,13 +2,6 @@
 using ARMDel.Domain.UseCases;
 using ARMDel.Presentation.View;
 using Prism.Commands;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Security;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -16,10 +9,22 @@ namespace ARMDel.Presentation.ViewModel
 {
     public class AuthorizationViewModel: BaseViewModel
     {
+        
         AuthorizationInteractor authorizationInteractor = new AuthorizationInteractor();
-        Operator oper = new Operator("vur","Name", "Password");
 
         private string login;
+        private string password;
+        private string message;
+        private string inf = "";
+        public string Message
+        {
+            get { return message; }
+            set 
+            { 
+                message = value; 
+                OnPropertyChanged("Message");
+            }
+        }
         public string Login
         {
             get { return login; }
@@ -29,8 +34,6 @@ namespace ARMDel.Presentation.ViewModel
                 OnPropertyChanged("Login");
             }
         }
-
-        private string password;
         public string Password
         {
             get { return password; }
@@ -40,15 +43,10 @@ namespace ARMDel.Presentation.ViewModel
                 OnPropertyChanged("Password");
             }
         }
-
-        public ICommand OpenMainWindowCommand { get; }
-        public ICommand OpenAdminMenuCommand { get; }
         public ICommand AuthorizeCommand { get; }
 
         public AuthorizationViewModel()
         {
-            OpenMainWindowCommand = new DelegateCommand(OpenMainWindow);
-            OpenAdminMenuCommand = new DelegateCommand(OpenAdminMenu);
             AuthorizeCommand = new DelegateCommand(Authorize);
         }
 
@@ -64,13 +62,28 @@ namespace ARMDel.Presentation.ViewModel
             var adminMenu = new AdminMenu() { DataContext = adminMenuViewModel };
             adminMenu.Show();
         }
-        private void Authorize()
+        private void UpdateMessage(string inf)
         {
-            DataManager.AddOperator(oper);
-            authorizationInteractor.TryAuthorize(Login, Password);
-            if (typeof(Operator).IsInstanceOfType(DataManager.currentUser))
-                OpenMainWindow();
-
+            Message = inf;
+        }
+        private async void Authorize()
+        {
+            //ВРЕМЕННО
+            TESTDATA TESTDATA = new TESTDATA();
+            TESTDATA.MakeFakeData();
+            //ВРЕМЕННО
+            try
+            {
+               await Task.Run(() => authorizationInteractor.TryAuthorize(Login, Password));
+                if (typeof(Operator).IsInstanceOfType(DataManager.currentUser))
+                    OpenMainWindow();
+                if (typeof(Admin).IsInstanceOfType(DataManager.currentUser))
+                OpenAdminMenu();
+            }
+            catch (AuthorizeException e)
+            {
+                Message = e.Message;
+            }
         }
 
     }

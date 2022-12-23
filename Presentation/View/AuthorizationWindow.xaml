@@ -55,9 +55,16 @@
                     materialDesign:HintAssist.Hint="Введите пароль" 
                     Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" FontSize="16">
                 </PasswordBox>-->
+                
+                <TextBlock
+                    Text="{Binding Message, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    FontSize="10"
+                    Foreground="Red" 
+                    >
+                </TextBlock>
                 <Button Content="Войти" 
-                        Margin="0,40,0,0"
-                        Command="{Binding AuthorizeCommand}"  />
+            Margin="0,20,0,0"
+            Command="{Binding AuthorizeCommand}"  />
             </StackPanel>
         </Border>
     </Grid>

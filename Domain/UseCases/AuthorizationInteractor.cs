@@ -9,6 +9,7 @@ namespace ARMDel.Domain.UseCases
 {
     public class AuthorizationInteractor
     {
+        
         AutorizationRepository autorizationRepository = new AutorizationRepository();
         private string GetHash(string input)
         {
@@ -20,10 +21,14 @@ namespace ARMDel.Domain.UseCases
        
         public void TryAuthorize(string inputLogin, string inputPassword)
         {
+            if (inputLogin == null)
+                throw new AuthorizeException("Введите логин!");
+            if (inputPassword == null)
+                throw new AuthorizeException("Введите пароль!");
             bool IsLoginTrue = false;
             int index = 0;
             int usersCount = DataManager.AllUsers.Count;
-            //string passwordHash = GetHash(inputPassword);
+            string passwordHash = GetHash(inputPassword);
 
             for (int i = 0; i < usersCount; i++)
                 if (DataManager.AllUsers[i].Login == inputLogin)
@@ -33,8 +38,8 @@ namespace ARMDel.Domain.UseCases
                 }
 
             if (IsLoginTrue == false)
-                 throw new AuthorizeException("Несуществующий логин");
-            else if (!(DataManager.AllUsers[index].Password == inputPassword))
+                    throw new AuthorizeException("Несуществующий логин");
+            else if (!(DataManager.AllUsers[index].Password == passwordHash))
                 throw new AuthorizeException("Неверный пароль");
             else  autorizationRepository.Authorize(DataManager.AllUsers[index]);
         }

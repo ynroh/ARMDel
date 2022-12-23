@@ -8,14 +8,6 @@ using System.Windows.Documents;
 
 namespace ARMDel.Domain.Entities
 {
-    public enum OrderStatus
-    {
-        Added,
-        SentToKitchen,
-        Ready,
-        TransferredToCourier,
-        Delivered
-    };
     public enum PaymentMethod
     {
         PaymentByCard,
@@ -29,7 +21,6 @@ namespace ARMDel.Domain.Entities
         public string OperatorName { get; }
         public Client Client { get; }
         public List<(Product product, int quantity, string note)> Products { get; }
-        public OrderStatus Status { get; }
         public Courier Courier { get; }
         public decimal DeliveryPrice { get; }
         public PaymentMethod PaymentMethod { get; }
@@ -95,7 +86,7 @@ namespace ARMDel.Domain.Entities
             return isNormal;
         }
 
-        public Order(DateTime DateOfAdded, DateTime CompletionDate, int Number, string OperatorName, Client Client, PaymentMethod PaymentMethod, List<(Product product, int quantity, string note)> Products, OrderStatus Status, Courier Courier, decimal DeliveryPrice, decimal Cost)
+        public Order(DateTime DateOfAdded, DateTime CompletionDate, int Number, string OperatorName, Client Client, PaymentMethod PaymentMethod, List<(Product product, int quantity, string note)> Products, Courier Courier, decimal DeliveryPrice, decimal Cost)
         {
             if (IsNormalParameters( DateOfAdded,  CompletionDate,  Number,  OperatorName,  Client, Products,  Courier,  DeliveryPrice,  Cost) == true)
             {
@@ -107,10 +98,16 @@ namespace ARMDel.Domain.Entities
                 this.PaymentMethod = PaymentMethod;
                 this.Cost = Cost;
                 this.Products = Products;
-                this.Status = Status;
                 this.Courier = Courier;
                 this.DeliveryPrice = DeliveryPrice;
             }
+        }
+        //ВРЕМЕННО
+        public Order(int Number, string OperatorName, DateTime date)
+        {
+            this.Number = Number;
+            this.OperatorName = OperatorName;
+            this.DateOfAdded = date;
         }
     }
 }
