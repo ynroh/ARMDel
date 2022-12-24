@@ -1,4 +1,5 @@
-﻿using ARMDel.Presentation.ViewModel;
+﻿using ARMDel.Domain.Entities;
+using ARMDel.Presentation.ViewModel;
 using System;
 using System.Windows;
 
@@ -13,6 +14,9 @@ namespace ARMDel.Presentation.View
         {
             InitializeComponent();
             DataContext = new AuthorizationViewModel();
+
+            DataManager.DeserializeDistricts();
+            DataManager.DeserializeCouriers();
         }
     }
 }

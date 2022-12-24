@@ -1,17 +1,74 @@
 ﻿using ARMDel.Domain.Entities;
+using Prism.Commands;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
+using System.Windows.Input;
 
 namespace ARMDel.Presentation.ViewModel
 {
     public class AddingOrderViewModel: DependencyObject
     {
         #region PROPERTYS
+
+
+
+        public Courier SelectedCourier
+        {
+            get { return (Courier)GetValue(SelectedCourierProperty); }
+            set { SetValue(SelectedCourierProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SelectedCourier.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectedCourierProperty =
+            DependencyProperty.Register("SelectedCourier", typeof(Courier), typeof(AddingOrderViewModel), new PropertyMetadata(null));
+
+
+
+
+        public string FilterCourier
+        {
+            get { return (string)GetValue(FilterCourierProperty); }
+            set { SetValue(FilterCourierProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for FilterCourier.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty FilterCourierProperty =
+            DependencyProperty.Register("FilterCourier", typeof(string), typeof(AddingOrderViewModel), new PropertyMetadata("", FilterCourier_Changed));
+
+
+        private static void FilterCourier_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var current = d as AddingOrderViewModel;
+            if (current != null)
+            {
+                current.CourierList.Filter = null;
+                current.CourierList.Filter = current.IsCourierFiltered;
+            }
+        }
+
+
+
+        public ICollectionView CourierList
+        {
+            get { return (ICollectionView)GetValue(CourierListProperty); }
+            set { SetValue(CourierListProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for CourierList.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CourierListProperty =
+            DependencyProperty.Register("CourierList", typeof(ICollectionView), typeof(AddingOrderViewModel), new PropertyMetadata(null));
+
+
+
+
         public string ClientName
         {
             get { return (string)GetValue(ClientNameClientNameProperty); }
@@ -48,15 +105,27 @@ namespace ARMDel.Presentation.ViewModel
 
 
 
-        public Courier CourierName
+        public Courier Courier
         {
-            get { return (Courier)GetValue(CourierNameProperty); }
+            get { return (Courier)GetValue(CourierProperty); }
+            set { SetValue(CourierProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Courier.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CourierProperty =
+            DependencyProperty.Register("Courier", typeof(Courier), typeof(AddingOrderViewModel), new PropertyMetadata(null));
+
+
+
+        public string CourierName
+        {
+            get { return (string)GetValue(CourierNameProperty); }
             set { SetValue(CourierNameProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for CourierName.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CourierNameProperty =
-            DependencyProperty.Register("CourierName", typeof(Courier), typeof(AddingOrderViewModel), new PropertyMetadata(null));
+            DependencyProperty.Register("CourierName", typeof(string), typeof(AddingOrderViewModel), new PropertyMetadata(""));
 
 
 
@@ -190,7 +259,43 @@ namespace ARMDel.Presentation.ViewModel
             DependencyProperty.Register("OrderCost", typeof(decimal), typeof(AddingOrderViewModel), new PropertyMetadata(0m));
         #endregion
 
+        public ICommand AssignCourierCommand { get; }
+        public AddingOrderViewModel()
+        {
+            CourierList = CollectionViewSource.GetDefaultView(DataManager.AllCouriers);
+            AssignCourierCommand = new DelegateCommand(TryAssignCourier);
+        }
 
+        private void AssignCourier()
+        {
+            if (SelectedCourier == null)
+                throw new ArgumentException("Сначала выберите курьера из списка!");
+            else
+            {
+                CourierName = SelectedCourier.CourierName;
+                Courier = SelectedCourier;
+            }
+        }
+        private void TryAssignCourier()
+        {
+            try
+            {
+                AssignCourier();
+            }
+            catch(ArgumentException e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private bool IsCourierFiltered(object obj)
+        {
+            bool res = true;
+            Courier current = obj as Courier;
+            if (!string.IsNullOrEmpty(FilterCourier) && current != null && !current.CourierName.Contains(FilterCourier))
+                res = false;
+            return res;
+        }
     }
 }
 

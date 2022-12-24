@@ -23,8 +23,6 @@ namespace ARMDel.Presentation.View
         public AddingOrder()
         {
             InitializeComponent();
-            DataManager.DeserializeDistricts();
-            DataManager.DeserializeCouriers();
         }
     }
 }

@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:ARMDel.Presentation.View"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
+        
         xmlns:viewmodel="clr-namespace:ARMDel.Presentation.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AddingOrderViewModel}"
         Title="" Height="868" Width="1556"  ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FFBBA1DD"/>
@@ -120,7 +122,7 @@
                 <TextBox
                     IsReadOnly="True"
                     Width="400" 
-                    Text="{Binding CourierName}"
+                    Text="{Binding CourierName, UpdateSourceTrigger=PropertyChanged}"
                     HorizontalAlignment="Left"
                     materialDesign:HintAssist.Hint="Курьер" 
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="20">
@@ -246,17 +248,41 @@
                 <TextBox x:Name="SearchCourier" 
                     Margin="10,0,0,0"
                     HorizontalAlignment="Left" 
+                    Text="{Binding FilterCourier, UpdateSourceTrigger=PropertyChanged}"
                     VerticalAlignment="Top"
                     materialDesign:HintAssist.Hint="Поиск курьера" 
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="20"
                     Width="200">
                 </TextBox>
                 <ListBox
-                    Height="340">
+                    Height="320"
+                    ItemsSource="{Binding CourierList}"
+                    SelectedItem="{Binding SelectedCourier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="5">
+                                <TextBlock FontSize="20" Text="{Binding Path=CourierName}"/>
+                                <TextBlock>
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Text" Value="Пеший курьер" />
+                                        <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=HasCar}" Value="True">
+                                                <Setter Property="Text" Value="Авто курьер" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
                 </ListBox>
                 <Button x:Name="AddCourier" 
                     Content="Назначить"
                     Width="350"
+                    Command="{Binding AssignCourierCommand}"
+                    Margin="0,20,0,0"
                     />
             </StackPanel>
         </Grid>
@@ -267,7 +293,6 @@
             HorizontalAlignment="Right">
             <Button
                 Content="Сохранить"
-                
                 Margin="10,0,0,0"
                 Height="50" Width="240">
             </Button>
