@@ -1,22 +1,25 @@
-﻿using System;
+﻿using ARMDel.Presentation.ViewModel;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
+using ARMDel.Domain.Repository;
 
 namespace ARMDel.Domain.Entities
 {
-    public enum PaymentMethod
+    public enum PaymentMethod 
     {
         PaymentByCard,
         PaymentInCash
     };
-    public class Order
+    public class Order : IOrder
     {
+
         public DateTime DateOfAdded { get; }
-        public DateTime CompletionDate { get; }
         public int Number { get; }
         public string OperatorName { get; }
         public Client Client { get; }
@@ -26,11 +29,10 @@ namespace ARMDel.Domain.Entities
         public PaymentMethod PaymentMethod { get; }
         public decimal Cost { get; }
 
-        private bool IsNormalParameters(DateTime DateOfAdded, DateTime CompletionDate, int Number, string OperatorName, Client Client, List<(Product product, int quantity, string note)> Products, Courier Courier, decimal DeliveryPrice, decimal Cost)
+        private bool IsNormalParameters(DateTime DateOfAdded, int Number, string OperatorName, Client Client, List<(Product product, int quantity, string note)> Products, Courier Courier, decimal DeliveryPrice, decimal Cost)
         {
             bool isNormal = true;
             bool NullDateOfAdded = DateOfAdded == null;
-            bool NullCompletionDateOfAdded = CompletionDate == null;
             bool InvalidNumber = Number <= 0;
             bool NullOperatorName = OperatorName == null;
             bool NullClient = Client == null;
@@ -42,11 +44,6 @@ namespace ARMDel.Domain.Entities
             {
                 isNormal = false;
                 throw new ArgumentNullException("Null DateOfAdded");
-            }
-            else if (NullCompletionDateOfAdded)
-            {
-                isNormal = false;
-                throw new ArgumentNullException("Null CompletionDate");
             }
             else if (InvalidNumber)
             {
@@ -86,12 +83,11 @@ namespace ARMDel.Domain.Entities
             return isNormal;
         }
 
-        public Order(DateTime DateOfAdded, DateTime CompletionDate, int Number, string OperatorName, Client Client, PaymentMethod PaymentMethod, List<(Product product, int quantity, string note)> Products, Courier Courier, decimal DeliveryPrice, decimal Cost)
+        public Order(DateTime DateOfAdded, int Number, string OperatorName, Client Client, PaymentMethod PaymentMethod, List<(Product product, int quantity, string note)> Products, Courier Courier, decimal DeliveryPrice, decimal Cost)
         {
-            if (IsNormalParameters( DateOfAdded,  CompletionDate,  Number,  OperatorName,  Client, Products,  Courier,  DeliveryPrice,  Cost) == true)
+            if (IsNormalParameters( DateOfAdded,  Number,  OperatorName,  Client, Products,  Courier,  DeliveryPrice,  Cost) == true)
             {
                 this.DateOfAdded = DateOfAdded;
-                this.CompletionDate = CompletionDate;
                 this.Number = Number;
                 this.OperatorName = OperatorName;
                 this.Client = Client;

@@ -1,8 +1,10 @@
 ﻿using ARMDel.Domain.Entities;
+using ARMDel.Domain.Repository;
 using ARMDel.Domain.UseCases;
 using ARMDel.Presentation.View;
 using Prism.Commands;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -19,10 +21,12 @@ namespace ARMDel.Presentation.ViewModel
 {
     public class MainViewModel: DependencyObject
     {
-        ShowingOrderInteractor showingOrderInteractor = new ShowingOrderInteractor();
+        private readonly ShowingOrderInteractor showingOrderInteractor = new ShowingOrderInteractor();
         public string Name { get;}
         private readonly DateTime currentDate = new DateTime();
         private List<Order> OrdersByDate = new List<Order>();
+        //private List<OrderViewModel> OrdersByDateVM = new List<OrderViewModel>();
+        public string Colour { get; set; }
 
         #region PROPERTYS
 
@@ -48,20 +52,17 @@ namespace ARMDel.Presentation.ViewModel
             }
         }
 
-        public Order SelectedOrder
+
+        public IOrder SelectedOrder
         {
-            get { return (Order)GetValue(SelectedOrderProperty); }
-            set { SetValue(SelectedOrderProperty, value);}
+            get { return (IOrder)GetValue(SelectedOrderProperty); }
+            set { SetValue(SelectedOrderProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for SelectedOrder.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedOrderProperty =
-            DependencyProperty.Register("SelectedOrder", typeof(Order), typeof(MainViewModel), new PropertyMetadata(null, SelectedOrder_Changet));
+            DependencyProperty.Register("SelectedOrder", typeof(IOrder), typeof(MainViewModel), new PropertyMetadata(null));
 
-        private static void SelectedOrder_Changet(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         public ICollectionView OrderList
         {
@@ -105,7 +106,10 @@ namespace ARMDel.Presentation.ViewModel
             Name = DataManager.currentUser.Name;
             currentDate = DateTime.Today;
             OrdersByDate = showingOrderInteractor.FindOrderByDate(currentDate);
-            OrderList = CollectionViewSource.GetDefaultView(OrdersByDate);
+            List<OrderViewModel> OrdersByDateVM = new List<OrderViewModel>();
+            foreach (var o in OrdersByDate)
+                OrdersByDateVM.Add(new OrderViewModel(o));
+            OrderList = CollectionViewSource.GetDefaultView(OrdersByDateVM);
             OrderList.Filter = IsOrderFiltered;
         }
 
@@ -119,14 +123,17 @@ namespace ARMDel.Presentation.ViewModel
         private void ShowOrderByDate()
         {
             OrdersByDate.Clear();
-           OrdersByDate = showingOrderInteractor.FindOrderByDate(ChosenDate);
-            OrderList = CollectionViewSource.GetDefaultView(OrdersByDate);
+            List<OrderViewModel> OrdersByDateVM = new List<OrderViewModel>();
+            OrdersByDate = showingOrderInteractor.FindOrderByDate(ChosenDate);
+            foreach (var o in OrdersByDate)
+                OrdersByDateVM.Add(new OrderViewModel(o));
+            OrderList = CollectionViewSource.GetDefaultView(OrdersByDateVM);
         }
 
         private bool IsOrderFiltered(object obj)
         {
             bool res = true;
-            Order current = obj as Order;
+            OrderViewModel current = obj as OrderViewModel;
             if (!string.IsNullOrEmpty(FilterText) && current != null && !current.OperatorName.Contains(FilterText))
                 res = false;
             return res;

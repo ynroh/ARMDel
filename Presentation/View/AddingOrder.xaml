@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:ARMDel.Presentation.View"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
+        xmlns:viewmodel="clr-namespace:ARMDel.Presentation.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AddingOrderViewModel}"
         Title="" Height="868" Width="1556"  ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -42,30 +43,46 @@
             </Border>
         </Border>
         <StackPanel 
-            Orientation="Horizontal"
-            Height="50" Width="450" 
-            Margin="1030,645,76,107">
+            Orientation="Horizontal" Width="450" 
+            Margin="1030,640,76,142">
             <TextBox
                 IsReadOnly="True"
-                Width="200" 
-                HorizontalAlignment="Left"
+                Width="200" Height="50"
+                Text="{Binding DeliveryCost}"
                 materialDesign:HintAssist.Hint="Стоимость доставки" 
-                Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="16">
-            </TextBox>
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="16"/>
             <TextBox
                 IsReadOnly="True"
-                Width="200" 
+                Width="200" Height="50"
+                Text="{Binding OrderCost}"
                 Margin="30,0,0,0"
                 HorizontalAlignment="Left"
                 materialDesign:HintAssist.Hint="Сумма заказа" 
-                Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="16">
-            </TextBox>
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="16"/>
+        </StackPanel>
+        <StackPanel
+            Orientation="Horizontal"
+            Height="70" Width="450" Margin="1030,675,76,107" >
+            <RadioButton 
+                Content="Оплата наличными"
+                IsChecked="{Binding CashPayment}"
+                FontSize="16"
+                Height="50"
+                Margin="0,0,0,20"
+                Foreground="#FF8E4BE0"/>
+            <RadioButton 
+                Content="Оплата картой"
+                IsChecked="{Binding CardPayment}"
+                FontSize="16"
+                Height="50"
+                Margin="70,0,0,20"
+                Foreground="#FF8E4BE0"/>
         </StackPanel>
         <!--Основная часть-->
         <Grid 
-              Height="788" Width="930" 
+              Height="788" Width="1440" 
               HorizontalAlignment="Left" 
-                Margin="70,0,0,0">
+                Margin="70,32,0,32">
             <Grid.RowDefinitions>
                 <RowDefinition Height="250"/>
                 <RowDefinition Height="458"/>
@@ -82,24 +99,28 @@
                 <TextBox
                     Width="400" 
                     HorizontalAlignment="Left"
+                    Text="{Binding ClientName}"
                     materialDesign:HintAssist.Hint="ФИО" 
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="20">
                 </TextBox>
                 <TextBox
                     Width="400" 
                     HorizontalAlignment="Left"
+                    Text="{Binding PhoneNumber}"
                     materialDesign:HintAssist.Hint="Номер телефона" 
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="20">
                 </TextBox>
                 <TextBox
                     Width="400" 
                     HorizontalAlignment="Left"
+                    Text="{Binding District}"
                     materialDesign:HintAssist.Hint="Район" 
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="20">
                 </TextBox>
                 <TextBox
                     IsReadOnly="True"
                     Width="400" 
+                    Text="{Binding CourierName}"
                     HorizontalAlignment="Left"
                     materialDesign:HintAssist.Hint="Курьер" 
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="20">
@@ -111,6 +132,7 @@
                 <!--Улица-->
                 <TextBox
                     Width="400" 
+                    Text="{Binding Street}"
                     HorizontalAlignment="Left"
                     materialDesign:HintAssist.Hint="Улица"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="20">
@@ -119,12 +141,14 @@
                 <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal">
                     <TextBox
                         Width="180" 
+                        Text="{Binding Building}"
                         HorizontalAlignment="Left"
                         materialDesign:HintAssist.Hint="Дом" 
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="20">
                     </TextBox>
                     <TextBox
                         Width="180" Margin="40,0,0,0"
+                        Text="{Binding Entrance}"
                         HorizontalAlignment="Left"
                         materialDesign:HintAssist.Hint="Подъезд" 
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="20">
@@ -133,13 +157,15 @@
                 <!--Квартира этаж-->
                 <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal">
                     <TextBox
-                        Width="180" 
+                        Width="180"
+                        Text="{Binding Apartment}"
                         HorizontalAlignment="Left"
                         materialDesign:HintAssist.Hint="Квартира/Офис" 
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="20">
                     </TextBox>
                     <TextBox
                         Width="180" Margin="40,0,0,0"
+                        Text="{Binding Floor}"
                         HorizontalAlignment="Left"
                         materialDesign:HintAssist.Hint="Этаж" 
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="20">
@@ -157,6 +183,7 @@
                     </TextBox>
                     <RadioButton x:Name="haveIntercom"
                         Margin="40,0,0,0"
+                        IsChecked="{Binding HaveIntercom}"
                         VerticalAlignment="Bottom"
                         Height="30"
                         Foreground="#6c6c6c" FontSize="20"
@@ -164,6 +191,7 @@
                     </RadioButton>
                     <RadioButton x:Name="haveNoIntercom"
                         Margin="60,0,0,0"
+                        IsChecked="{Binding HaveNoIntercom}"
                         VerticalAlignment="Bottom"
                         Height="30"
                         Foreground="#6c6c6c" FontSize="20"

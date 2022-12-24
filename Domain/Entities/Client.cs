@@ -9,14 +9,14 @@ namespace ARMDel.Domain.Entities
     public class Client
     {
         public string ClientName { get; }
-        public string PhoneNumber { get; }
+        public int[] PhoneNumber { get; }
         public Address Address { get; }
-        private bool IsNormalParameters(string ClientName, string PhoneNumber, Address Address)
+        private bool IsNormalParameters(string ClientName, int[] PhoneNumber, Address Address)
         {
             bool isNormal = true;
             
             bool NullClientName = ClientName == "";
-            bool NullPhoneNumber = PhoneNumber == "";
+            bool NullPhoneNumber = PhoneNumber == null;
             bool NullAddress = Address == null;
             bool InvalidPhoneNumber = PhoneNumber.Length != 10;
             if (NullClientName)
@@ -48,7 +48,7 @@ namespace ARMDel.Domain.Entities
                 }
             return isNormal;
         }
-        public Client(string ClientName, string PhoneNumber, Address Address)
+        public Client(string ClientName, int[] PhoneNumber, Address Address)
         {
             if (IsNormalParameters(ClientName, PhoneNumber, Address) == true)
             {

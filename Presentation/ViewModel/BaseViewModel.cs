@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ARMDel.Presentation.ViewModel
 {
-    public class BaseViewModel: IDataErrorInfo
+    public class BaseViewModel: INotifyPropertyChanged
     {
         public string this[string columnName] => throw new NotImplementedException();
 

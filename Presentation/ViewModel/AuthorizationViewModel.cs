@@ -10,12 +10,11 @@ namespace ARMDel.Presentation.ViewModel
     public class AuthorizationViewModel: BaseViewModel
     {
         
-        AuthorizationInteractor authorizationInteractor = new AuthorizationInteractor();
+        private readonly AuthorizationInteractor authorizationInteractor = new AuthorizationInteractor();
 
         private string login;
         private string password;
         private string message;
-        private string inf = "";
         public string Message
         {
             get { return message; }
@@ -61,10 +60,6 @@ namespace ARMDel.Presentation.ViewModel
             var adminMenuViewModel = new AdminMenuViewModel();
             var adminMenu = new AdminMenu() { DataContext = adminMenuViewModel };
             adminMenu.Show();
-        }
-        private void UpdateMessage(string inf)
-        {
-            Message = inf;
         }
         private async void Authorize()
         {

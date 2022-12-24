@@ -1,0 +1,26 @@
+[
+  {
+    "CourierName": "Карпенко Максим Дмитриевич",
+    "HasCar": true
+  },
+  {
+    "CourierName": "Рымарь Никита Андреевич",
+    "HasCar": false
+  },
+  {
+    "CourierName": "Клевцов Кирилл Андреевич",
+    "HasCar": false
+  },
+  {
+    "CourierName": "Дралюк Егор Александрович",
+    "HasCar": true
+  },
+  {
+    "CourierName": "Храмов Илья Сергеевич",
+    "HasCar": false
+  },
+  {
+    "CourierName": "Томилов Матвей Денисович",
+    "HasCar": true
+  }
+]

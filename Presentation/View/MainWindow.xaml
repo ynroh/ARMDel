@@ -89,7 +89,7 @@
             </DatePicker>
             <ListBox Grid.Row="3" Grid.Column="0"
                      ItemsSource="{Binding OrderList}"
-                     SelectedItem="{Binding SelectedOrder, Mode=TwoWay}" Margin="185,34,315,79" Grid.ColumnSpan="2">
+                     SelectedItem="{Binding SelectedOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="185,34,315,79" Grid.ColumnSpan="2">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="5">
@@ -128,13 +128,12 @@
                 Height="50" Width="200"
                 Content="Создать заказ" Grid.Column="2"
                 Command="{Binding OpenAddingOrderWindowCommand}" Cursor="Hand" Margin="0,25,78,75"/>
-            <StackPanel Grid.Column="1" Grid.Row="3" DataContext="{Binding SelectedOrder, Mode=TwoWay}" Margin="262,0,178,0" Height="420" VerticalAlignment="Center" Grid.ColumnSpan="2">
+            <StackPanel DataContext="{Binding SelectedOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="3" Margin="262,0,178,0" Height="420" VerticalAlignment="Center" Grid.ColumnSpan="2">
                 <TextBox IsReadOnly="True"
                     Text="{Binding Number, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     materialDesign:HintAssist.Hint="Номер заказа"
-                         Width="600"
+                    Width="600"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="16"/>
-
             </StackPanel>
         </Grid>
     </Grid>

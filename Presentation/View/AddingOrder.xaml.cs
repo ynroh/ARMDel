@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ARMDel.Domain.Entities;
 
 namespace ARMDel.Presentation.View
 {
@@ -22,6 +23,8 @@ namespace ARMDel.Presentation.View
         public AddingOrder()
         {
             InitializeComponent();
+            DataManager.DeserializeDistricts();
+            DataManager.DeserializeCouriers();
         }
     }
 }
