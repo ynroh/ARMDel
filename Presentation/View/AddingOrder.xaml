@@ -227,18 +227,32 @@
                 HorizontalAlignment="Left">
                 <TextBox x:Name="SearchProduct" 
                     Margin="10,0,0,0"
+                    Text="{Binding FilterDish, UpdateSourceTrigger=PropertyChanged}"
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Top"
-                    materialDesign:HintAssist.Hint="Поиск товара" 
+                    materialDesign:HintAssist.Hint="Поиск блюда" 
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="20"
                     Width="200">
                 </TextBox>
                 <ListBox
-                    Height="340">
+                    Height="322"
+                    ItemsSource="{Binding DishList}"
+                    SelectedItem="{Binding SelectedDish, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="370">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="5">
+                                <TextBlock FontSize="20" Text="{Binding Path=Title}"/>
+                                <TextBlock FontSize="14" Text="{Binding Path=Ingredients}"/>
+                                <TextBlock FontSize="13" Text="{Binding Path=Price}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
                 </ListBox>
                 <Button x:Name="AddProduct" 
+                    Command="{Binding AddDishCommand}"
                     Content="Добавить в заказ"
                     Width="350"
+                        Margin="-20,18,0,0"
                     />
             </StackPanel>
             <!--курьер-->
@@ -262,7 +276,7 @@
                         <DataTemplate>
                             <StackPanel Margin="5">
                                 <TextBlock FontSize="20" Text="{Binding Path=CourierName}"/>
-                                <TextBlock>
+                                <TextBlock FontSize="14">
                                 <TextBlock.Style>
                                     <Style TargetType="{x:Type TextBlock}">
                                         <Setter Property="Text" Value="Пеший курьер" />

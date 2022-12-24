@@ -14,9 +14,10 @@ namespace ARMDel.Presentation.View
         {
             InitializeComponent();
             DataContext = new AuthorizationViewModel();
-
             DataManager.DeserializeDistricts();
             DataManager.DeserializeCouriers();
+            DataManager.DeserializeProducts();
+            DataManager.DeserializeUsers();
         }
     }
 }

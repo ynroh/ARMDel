@@ -149,6 +149,9 @@
     <Compile Include="Presentation\View\Admin\ChangeProductPrice.xaml.cs">
       <DependentUpon>ChangeProductPrice.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\View\DishInfo.xaml.cs">
+      <DependentUpon>DishInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -192,6 +195,10 @@
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Presentation\View\DishInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Presentation\View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -215,8 +222,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Data\Files\Admins.json" />
     <None Include="Data\Files\Couriers.json" />
+    <None Include="Data\Files\Dishes.json" />
     <None Include="Data\Files\Districts.json" />
+    <None Include="Data\Files\Operators.json" />
+    <None Include="Data\Files\OtherProducts.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

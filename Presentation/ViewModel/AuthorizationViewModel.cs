@@ -3,6 +3,7 @@ using ARMDel.Domain.UseCases;
 using ARMDel.Presentation.View;
 using Prism.Commands;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ARMDel.Presentation.ViewModel
@@ -14,16 +15,6 @@ namespace ARMDel.Presentation.ViewModel
 
         private string login;
         private string password;
-        private string message;
-        public string Message
-        {
-            get { return message; }
-            set 
-            { 
-                message = value; 
-                OnPropertyChanged("Message");
-            }
-        }
         public string Login
         {
             get { return login; }
@@ -77,7 +68,7 @@ namespace ARMDel.Presentation.ViewModel
             }
             catch (AuthorizeException e)
             {
-                Message = e.Message;
+                MessageBox.Show(e.Message, "Authorization error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

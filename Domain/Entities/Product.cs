@@ -35,20 +35,16 @@ namespace ARMDel.Domain.Entities
     public class Dish : Product
     {
         public float Weight { get; }
-        public string[] Ingredients { get; }
-        public Dish(string Title, float Price, float Weight, string[] Ingredients) : base(Title, Price)
+        public string Ingredients { get; }
+        public Dish(string Title, float Price, float Weight, string Ingredients) : base(Title, Price)
         {
-            if (Weight <= 0)
-                throw new ArgumentException("Weight must be greater than 0");
-            else if (Ingredients == null)
-                throw new ArgumentNullException("Null Ingredients");
             this.Weight = Weight;
             this.Ingredients = Ingredients;
         }
     }
-    public class OtherProducts : Product
+    public class OtherProduct : Product
     {
-        public OtherProducts(string Title, float Price) : base(Title, Price)
+        public OtherProduct(string Title, float Price) : base(Title, Price)
         {
         }
     }

@@ -66,3 +66,5 @@ D:\Study\Programming\ARMDel\bin\Debug\System.Text.Encodings.Web.xml
 D:\Study\Programming\ARMDel\bin\Debug\System.Text.Json.xml
 D:\Study\Programming\ARMDel\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\Study\Programming\ARMDel\bin\Debug\System.ValueTuple.xml
+D:\Study\Programming\ARMDel\obj\Debug\Presentation\View\DishInfo.g.cs
+D:\Study\Programming\ARMDel\obj\Debug\Presentation\View\DishInfo.baml

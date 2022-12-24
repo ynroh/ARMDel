@@ -17,7 +17,8 @@ namespace ARMDel.Domain.Entities
 
         static private List<User> allUsers = new List<User>();
         static private List<Order> allOrders = new List<Order>();
-        static private List<Product> allProducts = new List<Product>();
+        static private List<Dish> allDishes = new List<Dish>();
+        static private List<OtherProduct> allOtherProducts = new List<OtherProduct>();
         static private List<Courier> allCouriers = new List<Courier>();
         static private List<District> alldistricts = new List<District>();
 
@@ -39,6 +40,38 @@ namespace ARMDel.Domain.Entities
             string jsonString = File.ReadAllText(fileName);
             AllCouriers = JsonConvert.DeserializeObject<List<Courier>>(jsonString);
         }
+
+        public static void DeserializeProducts()
+        {
+            string fileNameDishes = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\..\Data\Files\Dishes.json";
+            string fileNameProducts = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\..\Data\Files\OtherProducts.json";
+            
+            string jsonStringDishes = File.ReadAllText(fileNameDishes);
+            AllDishes = JsonConvert.DeserializeObject<List<Dish>>(jsonStringDishes);
+            
+            string jsonStringProducts = File.ReadAllText(fileNameProducts);
+            AllOtherProducts = JsonConvert.DeserializeObject<List<OtherProduct>>(jsonStringProducts);
+
+        }
+
+        public static void DeserializeUsers()
+        {
+            List<Operator> operators = new List<Operator>();
+            List<Admin> adminds = new List<Admin>();
+
+            string fileNameOperators = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\..\Data\Files\Operators.json";
+            string fileNameAdmins = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\..\Data\Files\Admins.json";
+            string jsonStringOperators= File.ReadAllText(fileNameOperators);
+            operators = JsonConvert.DeserializeObject<List<Operator>>(jsonStringOperators);
+            string jsonStringAdmins = File.ReadAllText(fileNameAdmins);
+            adminds = JsonConvert.DeserializeObject<List<Admin>>(jsonStringAdmins);
+
+            foreach (var p in operators)
+                AllUsers.Add(p);
+            foreach (var p in adminds)
+                AllUsers.Add(p);
+        }
+
         #region PROPERTYS
         static public List<User> AllUsers
         {
@@ -51,10 +84,15 @@ namespace ARMDel.Domain.Entities
             set { allOrders = value; }
         }
 
-        static public List<Product> AllProducts
+        static public List<Dish> AllDishes
         {
-            get { return allProducts; }
-            set { allProducts = value; }
+            get { return allDishes; }
+            set { allDishes = value; }
+        }
+        static public List<OtherProduct> AllOtherProducts
+        {
+            get { return allOtherProducts; }
+            set { allOtherProducts = value; }
         }
 
         static public List<Courier> AllCouriers
@@ -72,10 +110,7 @@ namespace ARMDel.Domain.Entities
         {
             AllUsers.Add(oper);
         }
-        static public void AddProduct(Product product)
-        {
-            AllProducts.Add(product);
-        }
+
         static public void AddCourier(Courier courier)
         {
             AllCouriers.Add(courier);

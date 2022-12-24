@@ -1,4 +1,5 @@
 ﻿using ARMDel.Domain.Entities;
+using ARMDel.Presentation.View;
 using Prism.Commands;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,41 @@ namespace ARMDel.Presentation.ViewModel
     public class AddingOrderViewModel: DependencyObject
     {
         #region PROPERTYS
+
+
+
+        public string Note
+        {
+            get { return (string)GetValue(NoteProperty); }
+            set { SetValue(NoteProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Note.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty NoteProperty =
+            DependencyProperty.Register("Note", typeof(string), typeof(AddingOrderViewModel), new PropertyMetadata(""));
+
+
+        public int Quantity
+        {
+            get { return (int)GetValue(QuantityProperty); }
+            set { SetValue(QuantityProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Quantity.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty QuantityProperty =
+            DependencyProperty.Register("Quantity", typeof(int), typeof(AddingOrderViewModel), new PropertyMetadata(1));
+
+
+
+        public Dish SelectedDish
+        {
+            get { return (Dish)GetValue(SelectedDishProperty); }
+            set { SetValue(SelectedDishProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SelectedDish.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectedDishProperty =
+            DependencyProperty.Register("SelectedDish", typeof(Dish), typeof(AddingOrderViewModel), new PropertyMetadata(null));
 
 
 
@@ -54,6 +90,39 @@ namespace ARMDel.Presentation.ViewModel
             }
         }
 
+
+
+        public string FilterDish
+        {
+            get { return (string)GetValue(FilterProductProperty); }
+            set { SetValue(FilterProductProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for FilterProduct.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty FilterProductProperty =
+            DependencyProperty.Register("FilterProduct", typeof(string), typeof(AddingOrderViewModel), new PropertyMetadata("", FilterDish_Changed));
+
+        private static void FilterDish_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var current = d as AddingOrderViewModel;
+            if (current != null)
+            {
+                current.DishList.Filter = null;
+                current.DishList.Filter = current.IsDishFiltered;
+            }
+        }
+
+        
+
+        public ICollectionView DishList
+        {
+            get { return (ICollectionView)GetValue(ProductListProperty); }
+            set { SetValue(ProductListProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ProductList.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ProductListProperty =
+            DependencyProperty.Register("ProductList", typeof(ICollectionView), typeof(AddingOrderViewModel), new PropertyMetadata(null));
 
 
         public ICollectionView CourierList
@@ -259,12 +328,55 @@ namespace ARMDel.Presentation.ViewModel
             DependencyProperty.Register("OrderCost", typeof(decimal), typeof(AddingOrderViewModel), new PropertyMetadata(0m));
         #endregion
 
+        public List<(Product product, int quantity, string note)> Products { get; }
         public ICommand AssignCourierCommand { get; }
+        public ICommand AddDishCommand { get; }
+        public ICommand AddQuantityCommand { get; }
+        public ICommand ReduceQuantityCommand { get; }
         public AddingOrderViewModel()
         {
             CourierList = CollectionViewSource.GetDefaultView(DataManager.AllCouriers);
+            DishList = CollectionViewSource.GetDefaultView(DataManager.AllDishes);
             AssignCourierCommand = new DelegateCommand(TryAssignCourier);
+            AddDishCommand = new DelegateCommand(TryAddDish);
+            AddQuantityCommand = new DelegateCommand(AddQuantity);
+            ReduceQuantityCommand = new DelegateCommand(ReduceQuantity);
         }
+
+        private void AddQuantity()
+        {
+            Quantity += 1;
+        }
+
+        private void ReduceQuantity()
+        {
+            if(Quantity>1)
+                Quantity -= 1;
+        }
+        private void AddDish()
+        {
+            if (SelectedDish == null)
+                throw new ArgumentException("Сначала выберите блюдо из списка!");
+            else
+            {
+                var AddingOrderViewModel = new AddingOrderViewModel();
+                var dishInfo = new DishInfo() { DataContext = AddingOrderViewModel };
+                dishInfo.ShowDialog();
+            }
+        }
+
+        private void TryAddDish()
+        {
+            try
+            {
+                AddDish();
+            }
+            catch(ArgumentException e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
 
         private void AssignCourier()
         {
@@ -293,6 +405,15 @@ namespace ARMDel.Presentation.ViewModel
             bool res = true;
             Courier current = obj as Courier;
             if (!string.IsNullOrEmpty(FilterCourier) && current != null && !current.CourierName.Contains(FilterCourier))
+                res = false;
+            return res;
+        }
+
+        private bool IsDishFiltered(object obj)
+        {
+            bool res = true;
+            Dish current = obj as Dish;
+            if (!string.IsNullOrEmpty(FilterDish) && current != null && !current.Title.Contains(FilterDish))
                 res = false;
             return res;
         }
