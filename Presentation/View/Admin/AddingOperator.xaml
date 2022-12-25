@@ -4,8 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ARMDel.Presentation.View"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:viewmodel="clr-namespace:ARMDel.Presentation.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AddingOperatorViewModel}"
         mc:Ignorable="d"
+        
         Title="AddingOperator" Height="350" Width="780" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -44,6 +46,7 @@
                     Grid.Column="1" 
                     Grid.ColumnSpan="2">
                     <TextBox
+                        Text="{Binding Surname}"
                         Width="350"
                         materialDesign:HintAssist.Hint="Фамилия" 
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="16">
@@ -59,11 +62,13 @@
                 <!--Вторая-->
                 <StackPanel Orientation="Horizontal">
                     <TextBox
+                        Text="{Binding Name}"
                         Width="350"
                         materialDesign:HintAssist.Hint="Имя" 
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="16">
                     </TextBox>
                     <TextBox x:Name="login"
+                        Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"
                         Width="200"
                         Margin="60,0,0,0"
                         IsReadOnly="True"
@@ -74,12 +79,14 @@
                 <!--Третья-->
                 <StackPanel Orientation="Horizontal">
                     <TextBox
+                        Text="{Binding MiddleName}"
                         HorizontalAlignment="Left"
                         Width="350"
                         materialDesign:HintAssist.Hint="Отчество" 
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="16">
                     </TextBox>
                     <TextBox x:Name="password"
+                        Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
                         Width="200"
                         Margin="60,0,0,0"
                         IsReadOnly="True"
@@ -88,18 +95,11 @@
                     </TextBox>
                 </StackPanel>
                 <Button x:Name="addOperator"
+                        Command="{Binding AddOperarorCommand}"
                     HorizontalAlignment="Left"
                     Width="350"
                     Content="Добавить"
                     Margin="0,20,0,0" Cursor="Hand">
-                </Button>
-                <Button x:Name="AddOCancel"
-                        HorizontalAlignment="Left"
-                        Margin="0,20,0,0"
-                        Width="350"
-                        Content="Отмена"
-                        Background="#FFBBA1DD"
-                        BorderBrush="LightGray">
                 </Button>
             </StackPanel>
         </Grid>

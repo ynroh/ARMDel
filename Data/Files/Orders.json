@@ -129,5 +129,52 @@
     "DeliveryPrice": 100.0,
     "PaymentMethod": 1,
     "Cost": 849.0
+  },
+  {
+    "DateOfAdded": "2022-12-26T00:00:00+07:00",
+    "Number": 4,
+    "OperatorName": "Кунина Александра Олеговна",
+    "Client": {
+      "ClientName": "Рымарь Никита ",
+      "PhoneNumber": "8913895454",
+      "Address": {
+        "District": "Центральный",
+        "Street": "Пермская",
+        "Building": "22",
+        "Apartment": 12,
+        "Entrance": 4,
+        "Floor": 6,
+        "HasIntercom": true
+      }
+    },
+    "Products": [
+      {
+        "Item1": {
+          "Weight": 180.0,
+          "Ingredients": "Огурец, помидор, сыр фета, кунжут",
+          "Title": "Фетаки",
+          "Price": 110.0
+        },
+        "Item2": 3,
+        "Item3": ""
+      },
+      {
+        "Item1": {
+          "Weight": 200.0,
+          "Ingredients": "Лосось, краб снежный, сливочный сыр, соус лава",
+          "Title": "Лава",
+          "Price": 239.0
+        },
+        "Item2": 7,
+        "Item3": "Без сыра"
+      }
+    ],
+    "Courier": {
+      "CourierName": "Дралюк Егор Александрович",
+      "HasCar": true
+    },
+    "DeliveryPrice": 0.0,
+    "PaymentMethod": 1,
+    "Cost": 2003.0
   }
 ]

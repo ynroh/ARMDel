@@ -31,32 +31,14 @@
             </Border.Effect>
         </Border>
         <!--Имя выход-->
-        <TextBox x:Name="AdminName"
-                    Margin="0 0 50 0"
-                    HorizontalAlignment="Right" VerticalAlignment="Top"
-                    Width="200" FontSize="20" 
+        <TextBlock x:Name="AdminName"
+                    Text="{Binding AdminName}"
+                    Margin="235,25,0,0"
+                    HorizontalAlignment="Left" VerticalAlignment="Top"
+                    Width="240" FontSize="15" 
                     Foreground="#7407fe"
-                    IsReadOnly="True" Grid.Column="1"/>
-        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="87"
-               Background="Transparent" Height="45" Margin="0,-5,-25,0"
-                BorderBrush="Transparent">
-            <Image Name="ExitButton"
-                    Height="25" Width="35"
-                     RenderTransformOrigin="0.143,1.362" Margin="0,11,20,0">
-                <Image.Style>
-                    <Style TargetType="{x:Type Image}">
-                        <Setter Property="Source" Value="/Presentation/View/Images/PassiveExitARM.png"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=ExitButton}"
-                                             Value="True">
-                                <Setter Property="Source" Value="/Presentation/View/Images/ActiveExitARM.png"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>
-        </Button>
-
+                   Background="LightGray"
+                   TextAlignment="Center"/>
         <!--Меню-->
         <StackPanel 
             Orientation="Vertical"
@@ -66,6 +48,7 @@
             Grid.Row="1">
             <Button 
                 x:Name="AddNewOperator"
+                Command="{Binding OpenAddOperatorWinCommand}"
                 Width="400" Margin="0,20,0,0"
                 Content="Добавить оператора" Click="AddOperator_Click">
             </Button>

@@ -59,7 +59,7 @@ namespace ARMDel.Presentation.ViewModel
                await Task.Run(() => authorizationInteractor.TryAuthorize(Login, Password));
                 if (typeof(Operator).IsInstanceOfType(DataManager.currentUser))
                     OpenMainWindow();
-                if (typeof(Admin).IsInstanceOfType(DataManager.currentUser))
+                if (typeof(Administrator).IsInstanceOfType(DataManager.currentUser))
                 OpenAdminMenu();
             }
             catch (AuthorizeException e)

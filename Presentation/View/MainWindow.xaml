@@ -63,7 +63,7 @@
                     Text="{Binding Name}"
                     Margin="0,41,78,24"
                     HorizontalAlignment="Right"
-                    Width="200" Height="35" FontSize="18" 
+                    Width="200" Height="35" FontSize="13" 
                     Foreground="#7407fe"
                     Background="#e4d1fd"
                     TextAlignment="Center"/>

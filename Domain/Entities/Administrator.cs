@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ARMDel.Domain.Entities
 {
-    public class Admin: User
+    public class Administrator: User
     {
-        public Admin(string name, string login, string password):base(name, login, password)
+        public Administrator(string name, string login, string password):base(name, login, password)
         { }
     }
 }
