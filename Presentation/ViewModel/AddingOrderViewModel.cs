@@ -1,6 +1,7 @@
 ﻿using ARMDel.Domain.Entities;
 using ARMDel.Domain.UseCases;
 using ARMDel.Presentation.View;
+using GalaSoft.MvvmLight.Command;
 using Prism.Commands;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -20,7 +22,7 @@ namespace ARMDel.Presentation.ViewModel
     public class AddingOrderViewModel : DependencyObject
     {
         #region PROPERTYS
-
+                           
         public ICollectionView InOrder
         {
             get { return (ICollectionView)GetValue(InOrderProperty); }
@@ -125,7 +127,7 @@ namespace ARMDel.Presentation.ViewModel
 
         // Using a DependencyProperty as the backing store for FilterProduct.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty FilterProductProperty =
-            DependencyProperty.Register("FilterProduct", typeof(string), typeof(AddingOrderViewModel), new PropertyMetadata("", FilterDish_Changed));
+            DependencyProperty.Register("FilterDish", typeof(string), typeof(AddingOrderViewModel), new PropertyMetadata("", FilterDish_Changed));
 
         private static void FilterDish_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -147,7 +149,7 @@ namespace ARMDel.Presentation.ViewModel
 
         // Using a DependencyProperty as the backing store for ProductList.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ProductListProperty =
-            DependencyProperty.Register("ProductList", typeof(ICollectionView), typeof(AddingOrderViewModel), new PropertyMetadata(null));
+            DependencyProperty.Register("DishList", typeof(ICollectionView), typeof(AddingOrderViewModel), new PropertyMetadata(null));
 
 
         public ICollectionView CourierList
@@ -165,14 +167,13 @@ namespace ARMDel.Presentation.ViewModel
 
         public string ClientName
         {
-            get { return (string)GetValue(ClientNameClientNameProperty); }
-            set { SetValue(ClientNameClientNameProperty, value); }
+            get { return (string)GetValue(ClientNameProperty); }
+            set { SetValue(ClientNameProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for ClientNameClientName.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ClientNameClientNameProperty =
-            DependencyProperty.Register("ClientNameClientName", typeof(string), typeof(AddingOrderViewModel), new PropertyMetadata(""));
-
+        public static readonly DependencyProperty ClientNameProperty =
+            DependencyProperty.Register("ClientName", typeof(string), typeof(AddingOrderViewModel), new PropertyMetadata(""));
 
 
         public string PhoneNumber
@@ -183,7 +184,7 @@ namespace ARMDel.Presentation.ViewModel
 
         // Using a DependencyProperty as the backing store for PhoneNumber.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PhoneNumberProperty =
-            DependencyProperty.Register("string", typeof(string), typeof(AddingOrderViewModel), new PropertyMetadata(""));
+            DependencyProperty.Register("PhoneNumber", typeof(string), typeof(AddingOrderViewModel), new PropertyMetadata(""));
 
 
 
@@ -238,7 +239,7 @@ namespace ARMDel.Presentation.ViewModel
 
         // Using a DependencyProperty as the backing store for Street.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty StreetProperty =
-            DependencyProperty.Register("Street", typeof(string), typeof(AddingOrderViewModel), new PropertyMetadata(""));
+            DependencyProperty.Register("Street", typeof(string), typeof(AddingOrderViewModel), new PropertyMetadata(null));
 
 
         public string Building
@@ -398,11 +399,14 @@ namespace ARMDel.Presentation.ViewModel
             try
             {
                 SaveOrder();
+                Clear();
+                MessageBox.Show("Заказ сохранён");
             }
             catch (ArgumentException e)
             {
                 MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            
         }
 
         private void SaveOrder()
@@ -432,12 +436,15 @@ namespace ARMDel.Presentation.ViewModel
             {
                 for (int i = Products.Count - 1; i >= 0; i--)
                 {
-                    if (Products[i].Item1 == SelectedProduct.Item1)
+                    if (Products[i] == SelectedProduct)
                         Products.Remove(Products[i]);
                 }
                 List<Tuple<Dish, int, string>> tuples = new List<Tuple<Dish, int, string>>(Products);
                 InOrder = CollectionViewSource.GetDefaultView(tuples);
-                OrderCost = addingOrderInteractor.CalcOrdrCost(tuples, DeliveryCost);
+                DeliveryCost = calc.CalculateDelCost(District); 
+                decimal[] res = addingOrderInteractor.CalcOrdrCost(tuples, DeliveryCost);
+                OrderCost = res[0];
+                DeliveryCost = res[1];
             }
         }
 
@@ -448,7 +455,10 @@ namespace ARMDel.Presentation.ViewModel
             Note = "";
             List<Tuple<Dish, int, string>> tuples = new List<Tuple<Dish, int, string>>(Products);
             InOrder = CollectionViewSource.GetDefaultView(tuples);
-            OrderCost = addingOrderInteractor.CalcOrdrCost(tuples, DeliveryCost);
+
+            decimal[] res = addingOrderInteractor.CalcOrdrCost(tuples, DeliveryCost);
+            OrderCost = res[0];
+            DeliveryCost = res[1];
         }
 
         private void AddQuantity()
@@ -523,6 +533,33 @@ namespace ARMDel.Presentation.ViewModel
             if (!string.IsNullOrEmpty(FilterDish) && current != null && !current.Title.Contains(FilterDish))
                 res = false;
             return res;
+        }
+
+        private void Clear()
+        {
+            SelectedDish = null;
+            SelectedProduct = null;
+            SelectedCourier = null;
+            FilterCourier = null;
+            FilterDish = null;
+            ClientName = null;
+            PhoneNumber = null;
+            District = null;
+            Courier = null;
+            CourierName = null;
+            Building = null;
+            Entrance = 0;
+            Apartment = 0;
+            Floor = 0;
+            HaveIntercom = false;
+            HaveNoIntercom = false;
+            CashPayment = false;
+            DeliveryCost = 0;
+            OrderCost = 0;
+            Street = null;
+            Products.Clear();
+            List<Tuple<Dish, int, string>> tuples = new List<Tuple<Dish, int, string>>(Products);
+            InOrder = CollectionViewSource.GetDefaultView(tuples);
         }
     }
 }

@@ -28,6 +28,18 @@ namespace ARMDel.Domain.Entities
             set { alldistricts = value; }
         }
 
+        public static void SerializeOrders()
+        {
+            string fileName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\..\Data\Files\Orders.json";
+            string json = JsonConvert.SerializeObject(AllOrders, Formatting.Indented);
+            File.WriteAllText(fileName, json);
+        }
+        public static void DeserializeOrders()
+        {
+            string fileName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\..\Data\Files\Orders.json";
+            string jsonString = File.ReadAllText(fileName);
+            AllOrders = JsonConvert.DeserializeObject<List<Order>>(jsonString);
+        }
         public static void DeserializeDistricts()
         {
             string fileName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)+ @"\..\..\Data\Files\Districts.json"; 
@@ -105,6 +117,7 @@ namespace ARMDel.Domain.Entities
         static public void AddOrder(Order order)
         {
             AllOrders.Add(order);
+            SerializeOrders();
         }
         static public void AddOperator(User oper)
         {

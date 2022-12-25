@@ -17,14 +17,17 @@ namespace ARMDel.Domain.UseCases
         private AddingClientRepository clientRepository = new AddingClientRepository();
         private AddingAddressRepository addressRepository = new AddingAddressRepository();
         private Calculator calculator = new Calculator();
-        public decimal CalcOrdrCost(List<Tuple<Dish, int, string>> tuples, decimal DelCost) 
+        public decimal[] CalcOrdrCost(List<Tuple<Dish, int, string>> tuples, decimal DelCost) 
         {
-            decimal res = 0;
-            
-            res = calculator.CalculateOrderCost(tuples);
+            decimal[] res = new decimal[2] { 0, 0 }; 
+            decimal sum;
+            sum = calculator.CalculateOrderCost(tuples);
 
-            if (res < 1200)
-                res += DelCost;
+            if (sum < 1200)
+                sum += DelCost;
+            else DelCost = 0;
+            res[0] = sum;
+            res[1] = DelCost;
             return res;
         }
 

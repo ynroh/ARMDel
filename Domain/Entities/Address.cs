@@ -9,9 +9,9 @@ namespace ARMDel.Domain.Entities
     public class Address
     { 
         public string District { get; }
-        public string Street { get; }
-        public string Building { get; }
-        public int Apartment { get; }
+        public string Street { get; set; }
+        public string Building { get; set; }
+        public int Apartment { get; set; }
         public int Entrance { get; }
         public int Floor { get; }
         public bool HasIntercom { get; }

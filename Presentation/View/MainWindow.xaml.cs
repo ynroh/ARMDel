@@ -24,6 +24,5 @@ namespace ARMDel.Presentation.View
         {
             InitializeComponent();
         }
-
     }
 }

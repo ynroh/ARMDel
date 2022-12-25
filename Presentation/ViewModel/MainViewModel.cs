@@ -4,15 +4,8 @@ using ARMDel.Domain.UseCases;
 using ARMDel.Presentation.View;
 using Prism.Commands;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -25,12 +18,11 @@ namespace ARMDel.Presentation.ViewModel
         public readonly static AddingOrderViewModel AddingOrderViewModel = new AddingOrderViewModel();
         public string Name { get;}
         private readonly DateTime currentDate = new DateTime();
+
         private List<Order> OrdersByDate = new List<Order>();
         public string Colour { get; set; }
 
         #region PROPERTYS
-
-
 
         public string FilterText
         {
@@ -118,6 +110,7 @@ namespace ARMDel.Presentation.ViewModel
         {
             var addingOrderWindow = new AddingOrder() { DataContext = AddingOrderViewModel };
             addingOrderWindow.Show();
+            Clear();
         }
         private void ShowOrderByDate()
         {
@@ -136,6 +129,12 @@ namespace ARMDel.Presentation.ViewModel
             if (!string.IsNullOrEmpty(FilterText) && current != null && !current.OperatorName.Contains(FilterText))
                 res = false;
             return res;
+        }
+
+        private void Clear()
+        {
+            FilterText = null;
+            SelectedOrder = null;
         }
     }
 }

@@ -54,10 +54,6 @@ namespace ARMDel.Presentation.ViewModel
         }
         private async void Authorize()
         {
-            //ВРЕМЕННО
-            TESTDATA TESTDATA = new TESTDATA();
-            TESTDATA.MakeFakeData();
-            //ВРЕМЕННО
             try
             {
                await Task.Run(() => authorizationInteractor.TryAuthorize(Login, Password));

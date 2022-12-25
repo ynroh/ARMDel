@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ARMDel.Domain.Entities;
+using ARMDel.Presentation.ViewModel;
 
 namespace ARMDel.Presentation.View
 {

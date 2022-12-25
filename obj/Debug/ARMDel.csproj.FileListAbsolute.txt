@@ -68,3 +68,14 @@ D:\Study\Programming\ARMDel\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\Study\Programming\ARMDel\bin\Debug\System.ValueTuple.xml
 D:\Study\Programming\ARMDel\obj\Debug\Presentation\View\DishInfo.g.cs
 D:\Study\Programming\ARMDel\obj\Debug\Presentation\View\DishInfo.baml
+D:\Study\Programming\ARMDel\bin\Debug\CommonServiceLocator.dll
+D:\Study\Programming\ARMDel\bin\Debug\GalaSoft.MvvmLight.dll
+D:\Study\Programming\ARMDel\bin\Debug\GalaSoft.MvvmLight.Extras.dll
+D:\Study\Programming\ARMDel\bin\Debug\GalaSoft.MvvmLight.Platform.dll
+D:\Study\Programming\ARMDel\bin\Debug\System.Windows.Interactivity.dll
+D:\Study\Programming\ARMDel\bin\Debug\GalaSoft.MvvmLight.pdb
+D:\Study\Programming\ARMDel\bin\Debug\GalaSoft.MvvmLight.xml
+D:\Study\Programming\ARMDel\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
+D:\Study\Programming\ARMDel\bin\Debug\GalaSoft.MvvmLight.Extras.xml
+D:\Study\Programming\ARMDel\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
+D:\Study\Programming\ARMDel\bin\Debug\GalaSoft.MvvmLight.Platform.xml

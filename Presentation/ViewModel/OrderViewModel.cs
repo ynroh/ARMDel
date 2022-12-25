@@ -38,7 +38,6 @@ namespace ARMDel.Presentation.ViewModel
         }
 
 
-
         private int number;
         public int Number
         {

@@ -98,12 +98,5 @@ namespace ARMDel.Domain.Entities
                 this.DeliveryPrice = DeliveryPrice;
             }
         }
-        //ВРЕМЕННО
-        public Order(int Number, string OperatorName, DateTime date)
-        {
-            this.Number = Number;
-            this.OperatorName = OperatorName;
-            this.DateOfAdded = date;
-        }
     }
 }

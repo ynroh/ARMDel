@@ -18,6 +18,7 @@ namespace ARMDel.Presentation.View
             DataManager.DeserializeCouriers();
             DataManager.DeserializeProducts();
             DataManager.DeserializeUsers();
+            DataManager.DeserializeOrders();
         }
     }
 }

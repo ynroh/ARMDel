@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ARMDel.Presentation.View"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:viewmodel="clr-namespace:ARMDel.Presentation.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AddingOrderViewModel}"
         Title="" Height="868" Width="1556"  ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
 
@@ -117,14 +117,14 @@
                 <TextBox
                     Width="400" 
                     HorizontalAlignment="Left"
-                    Text="{Binding ClientName}"
+                    Text="{Binding ClientName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     materialDesign:HintAssist.Hint="ФИО" 
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="20">
                 </TextBox>
                 <TextBox
                     Width="400" 
                     HorizontalAlignment="Left"
-                    Text="{Binding PhoneNumber}"
+                    Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
                     materialDesign:HintAssist.Hint="Номер телефона" 
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="20">
                 </TextBox>

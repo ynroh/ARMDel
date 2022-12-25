@@ -8,8 +8,8 @@ namespace ARMDel.Domain.Entities
 {
     public class Client
     {
-        public string ClientName { get; }
-        public string PhoneNumber { get; }
+        public string ClientName { get; set; }
+        public string PhoneNumber { get; set; }
         public Address Address { get; }
         private bool IsNormalParameters(string ClientName, string PhoneNumber, Address Address)
         {

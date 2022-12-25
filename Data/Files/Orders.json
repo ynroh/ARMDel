@@ -1,0 +1,133 @@
+[
+  {
+    "DateOfAdded": "2022-12-26T00:00:00+07:00",
+    "Number": 1,
+    "OperatorName": "мяу",
+    "Client": {
+      "ClientName": "Морева Ольга Алексеевна",
+      "PhoneNumber": "8913702344",
+      "Address": {
+        "District": "Ленинский",
+        "Street": "Степная",
+        "Building": "37",
+        "Apartment": 12,
+        "Entrance": 1,
+        "Floor": 4,
+        "HasIntercom": false
+      }
+    },
+    "Products": [
+      {
+        "Item1": {
+          "Weight": 175.0,
+          "Ingredients": "Лосось, огурец, сыр плавленый",
+          "Title": "Гейша",
+          "Price": 205.0
+        },
+        "Item2": 2,
+        "Item3": ""
+      },
+      {
+        "Item1": {
+          "Weight": 10.0,
+          "Ingredients": "",
+          "Title": "Васаби",
+          "Price": 19.0
+        },
+        "Item2": 1,
+        "Item3": ""
+      }
+    ],
+    "Courier": {
+      "CourierName": "Рымарь Никита Андреевич",
+      "HasCar": false
+    },
+    "DeliveryPrice": 400.0,
+    "PaymentMethod": 1,
+    "Cost": 1028.0
+  },
+  {
+    "DateOfAdded": "2022-12-26T00:00:00+07:00",
+    "Number": 2,
+    "OperatorName": "мяу",
+    "Client": {
+      "ClientName": "Мальцува Евгения Сергеевна",
+      "PhoneNumber": "8913895454",
+      "Address": {
+        "District": "Кировский",
+        "Street": "Новосибирская",
+        "Building": "15",
+        "Apartment": 34,
+        "Entrance": 5,
+        "Floor": 5,
+        "HasIntercom": true
+      }
+    },
+    "Products": [
+      {
+        "Item1": {
+          "Weight": 175.0,
+          "Ingredients": "Лосось, огурец, сыр плавленый",
+          "Title": "Гейша",
+          "Price": 205.0
+        },
+        "Item2": 2,
+        "Item3": ""
+      },
+      {
+        "Item1": {
+          "Weight": 10.0,
+          "Ingredients": "",
+          "Title": "Васаби",
+          "Price": 19.0
+        },
+        "Item2": 1,
+        "Item3": ""
+      }
+    ],
+    "Courier": {
+      "CourierName": "Дралюк Егор Александрович",
+      "HasCar": true
+    },
+    "DeliveryPrice": 400.0,
+    "PaymentMethod": 0,
+    "Cost": 829.0
+  },
+  {
+    "DateOfAdded": "2022-12-26T00:00:00+07:00",
+    "Number": 3,
+    "OperatorName": "мяу",
+    "Client": {
+      "ClientName": "Анатольев Анатолий Владимирович",
+      "PhoneNumber": "8913959238",
+      "Address": {
+        "District": "Центральный",
+        "Street": "Садовая",
+        "Building": "28",
+        "Apartment": 47,
+        "Entrance": 3,
+        "Floor": 4,
+        "HasIntercom": false
+      }
+    },
+    "Products": [
+      {
+        "Item1": {
+          "Weight": 1000.0,
+          "Ingredients": "40шт 5 роллов: Сяке темпура, Хоккайдо, Инари 2.0, Эби чиз, Веджи",
+          "Title": "Сет Темпура",
+          "Price": 749.0
+        },
+        "Item2": 1,
+        "Item3": ""
+      }
+    ],
+    "Courier": {
+      "CourierName": "Храмов Илья Сергеевич",
+      "HasCar": false
+    },
+    "DeliveryPrice": 100.0,
+    "PaymentMethod": 1,
+    "Cost": 849.0
+  }
+]
