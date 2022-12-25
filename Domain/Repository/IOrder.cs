@@ -13,7 +13,7 @@ namespace ARMDel.Domain.Repository
          int Number { get; }
          string OperatorName { get; }
          Client Client { get; }
-         List<(Product product, int quantity, string note)> Products { get; }
+         List<Tuple<Dish, int, string>> Products { get; }
          Courier Courier { get; }
          decimal DeliveryPrice { get; }
          PaymentMethod PaymentMethod { get; }

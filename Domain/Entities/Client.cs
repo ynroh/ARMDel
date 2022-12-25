@@ -9,9 +9,9 @@ namespace ARMDel.Domain.Entities
     public class Client
     {
         public string ClientName { get; }
-        public int[] PhoneNumber { get; }
+        public string PhoneNumber { get; }
         public Address Address { get; }
-        private bool IsNormalParameters(string ClientName, int[] PhoneNumber, Address Address)
+        private bool IsNormalParameters(string ClientName, string PhoneNumber, Address Address)
         {
             bool isNormal = true;
             
@@ -48,7 +48,7 @@ namespace ARMDel.Domain.Entities
                 }
             return isNormal;
         }
-        public Client(string ClientName, int[] PhoneNumber, Address Address)
+        public Client(string ClientName, string PhoneNumber, Address Address)
         {
             if (IsNormalParameters(ClientName, PhoneNumber, Address) == true)
             {

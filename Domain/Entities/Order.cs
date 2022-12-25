@@ -16,20 +16,20 @@ namespace ARMDel.Domain.Entities
         PaymentByCard,
         PaymentInCash
     };
-    public class Order : IOrder
+    public class Order 
     {
 
         public DateTime DateOfAdded { get; }
         public int Number { get; }
         public string OperatorName { get; }
         public Client Client { get; }
-        public List<(Product product, int quantity, string note)> Products { get; }
+        public List<Tuple<Dish, int, string>> Products { get; }
         public Courier Courier { get; }
         public decimal DeliveryPrice { get; }
         public PaymentMethod PaymentMethod { get; }
         public decimal Cost { get; }
 
-        private bool IsNormalParameters(DateTime DateOfAdded, int Number, string OperatorName, Client Client, List<(Product product, int quantity, string note)> Products, Courier Courier, decimal DeliveryPrice, decimal Cost)
+        private bool IsNormalParameters(DateTime DateOfAdded, int Number, string OperatorName, Client Client, List<Tuple<Dish, int, string>> Products, Courier Courier, decimal DeliveryPrice, decimal Cost)
         {
             bool isNormal = true;
             bool NullDateOfAdded = DateOfAdded == null;
@@ -83,7 +83,7 @@ namespace ARMDel.Domain.Entities
             return isNormal;
         }
 
-        public Order(DateTime DateOfAdded, int Number, string OperatorName, Client Client, PaymentMethod PaymentMethod, List<(Product product, int quantity, string note)> Products, Courier Courier, decimal DeliveryPrice, decimal Cost)
+        public Order(DateTime DateOfAdded, int Number, string OperatorName, Client Client, PaymentMethod PaymentMethod, List<Tuple<Dish, int, string>> Products, Courier Courier, decimal DeliveryPrice, decimal Cost)
         {
             if (IsNormalParameters( DateOfAdded,  Number,  OperatorName,  Client, Products,  Courier,  DeliveryPrice,  Cost) == true)
             {

@@ -30,8 +30,8 @@ namespace ARMDel.Presentation.ViewModel
         public DateTime DateOfAdded
         {
             get { return dateOfAdded; }
-            set 
-            { 
+            set
+            {
                 dateOfAdded = value;
                 OnPropertyChanged("DateOfAdded");
             }
@@ -74,8 +74,8 @@ namespace ARMDel.Presentation.ViewModel
             }
         }
 
-        private List<(Product product, int quantity, string note)> products;
-        public List<(Product product, int quantity, string note)> Products
+        private List<Tuple<Dish, int, string>> products;
+        public List<Tuple<Dish, int, string>> Products
         {
             get { return products; }
             set

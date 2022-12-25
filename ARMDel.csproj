@@ -104,7 +104,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Data\Repository\AddOrderRepository.cs" />
+    <Compile Include="Data\Repository\AddingAddressRepository.cs" />
+    <Compile Include="Data\Repository\AddingClientRepository.cs" />
+    <Compile Include="Data\Repository\AddingOrderRepository.cs" />
     <Compile Include="Data\Repository\AutorizationRepository.cs" />
     <Compile Include="Domain\Entities\Address.cs" />
     <Compile Include="Domain\Entities\Admin.cs" />

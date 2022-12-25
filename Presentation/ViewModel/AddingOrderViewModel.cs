@@ -175,15 +175,15 @@ namespace ARMDel.Presentation.ViewModel
 
 
 
-        public int[] PhoneNumber
+        public string PhoneNumber
         {
-            get { return (int[])GetValue(PhoneNumberProperty); }
+            get { return (string)GetValue(PhoneNumberProperty); }
             set { SetValue(PhoneNumberProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for PhoneNumber.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PhoneNumberProperty =
-            DependencyProperty.Register("PhoneNumber", typeof(int[]), typeof(AddingOrderViewModel), new PropertyMetadata(null));
+            DependencyProperty.Register("string", typeof(string), typeof(AddingOrderViewModel), new PropertyMetadata(""));
 
 
 
@@ -195,9 +195,16 @@ namespace ARMDel.Presentation.ViewModel
 
         // Using a DependencyProperty as the backing store for District.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DistrictProperty =
-            DependencyProperty.Register("District", typeof(string), typeof(AddingOrderViewModel), new PropertyMetadata(""));
+            DependencyProperty.Register("District", typeof(string), typeof(AddingOrderViewModel), new PropertyMetadata("", District_Changed));
 
-
+        private static void District_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var current = d as AddingOrderViewModel;
+            if (current != null)
+            {
+                current.DeliveryCost = current.calc.CalculateDelCost(current.District);
+            }
+        }
 
         public Courier Courier
         {
@@ -355,7 +362,9 @@ namespace ARMDel.Presentation.ViewModel
         
         #endregion
 
-        AddingOrderInteractor  addingOrderInteractor = new AddingOrderInteractor(); 
+
+        AddingOrderInteractor  addingOrderInteractor = new AddingOrderInteractor();
+        Calculator calc = new Calculator();
 
 
         public ICommand AssignCourierCommand { get; }
@@ -364,6 +373,7 @@ namespace ARMDel.Presentation.ViewModel
         public ICommand ReduceQuantityCommand { get; }
         public ICommand SaveDishCommand { get; }
         public ICommand DeleteDishCommand { get; }
+        public ICommand SaveOrderCommand { get; }
 
         private List<Tuple<Dish, int, string>> Products = new List<Tuple<Dish, int, string>>();
         private List<Tuple<Dish, int, string>> tuples = new List<Tuple<Dish, int, string>>();
@@ -380,6 +390,26 @@ namespace ARMDel.Presentation.ViewModel
             ReduceQuantityCommand = new DelegateCommand(ReduceQuantity);
             SaveDishCommand = new DelegateCommand(SaveDish);
             DeleteDishCommand = new DelegateCommand(TryDeleteDish);
+            SaveOrderCommand = new DelegateCommand(TrySaveOrder);
+        }
+
+        private void TrySaveOrder()
+        {
+            try
+            {
+                SaveOrder();
+            }
+            catch (ArgumentException e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SaveOrder()
+        {
+            Address address = addingOrderInteractor.СonvertDataToAddress(District, Street, Building, Apartment, Entrance, HaveNoIntercom, HaveIntercom, Floor);
+            Client client = addingOrderInteractor.СonvertDataToClient(ClientName, PhoneNumber, address);
+            addingOrderInteractor.AddOrder(DateTime.Today, DataManager.currentUser.Name, client, Courier, CashPayment, CardPayment, Products, OrderCost, DeliveryCost);
         }
 
         private void TryDeleteDish()

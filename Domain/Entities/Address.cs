@@ -13,8 +13,9 @@ namespace ARMDel.Domain.Entities
         public string Building { get; }
         public int Apartment { get; }
         public int Entrance { get; }
+        public int Floor { get; }
         public bool HasIntercom { get; }
-        private bool IsNormalParameters(string District, string Street, string Building, int Apartment, int Entrance)
+        private bool IsNormalParameters(string District, string Street, string Building, int Apartment, int Entrance, int Floor)
         {
             bool isNormal = true;
             bool NullDistrict = District == "";
@@ -22,6 +23,7 @@ namespace ARMDel.Domain.Entities
             bool NullBuilding = Building == "";
             bool InvalidApartment = Apartment <= 0;
             bool InvalidEntrance = Entrance <= 0;
+            bool InvalidFloor = Floor <= 0;
             if (NullDistrict)
             {
                 isNormal = false;
@@ -40,24 +42,30 @@ namespace ARMDel.Domain.Entities
             else if (InvalidApartment)
             {
                 isNormal = false;
-                throw new ArgumentException("InvalidApartment must be greater than 0");
+                throw new ArgumentException("Apartment must be greater than 0");
             }
             else if (InvalidEntrance)
             {
                 isNormal = false;
-                throw new ArgumentException("InvalidEntrance must be greater than 0");
+                throw new ArgumentException("dEntrance must be greater than 0");
+            }
+            else if (InvalidFloor)
+            {
+                isNormal = false;
+                throw new ArgumentException("Floor must be greater than 0");
             }
             return isNormal;
         }
-        public Address(string District, string Street, string Building, int Apartment, int Entrance, bool HasIntercom)
+        public Address(string District, string Street, string Building, int Apartment, int Entrance, int Floor, bool HasIntercom)
         {
-            if (IsNormalParameters(District, Street, Building, Apartment, Entrance) == true)
+            if (IsNormalParameters(District, Street, Building, Apartment, Entrance, Floor) == true)
             {
                 this.District = District;
                 this.Street = Street;
                 this.Building = Building;
                 this.Apartment = Apartment;
                 this.Entrance = Entrance;
+                this.Floor = Floor;
                 this.HasIntercom = HasIntercom;
             }
         }
