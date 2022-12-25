@@ -5,8 +5,8 @@ namespace ARMDel.Domain.Entities
     public abstract class Product
     {
         public string Title { get; }
-        public float Price { get; }
-        private bool IsNormalParameters(string Title, float Price)
+        public decimal Price { get; }
+        private bool IsNormalParameters(string Title, decimal Price)
         {
             bool isNormal = true;
             bool NullTitle = Title == "";
@@ -23,7 +23,7 @@ namespace ARMDel.Domain.Entities
             }
             return isNormal;
         }
-        public Product(string Title, float Price)
+        public Product(string Title, decimal Price)
         {
             if (IsNormalParameters(Title, Price) == true)
             {
@@ -36,7 +36,7 @@ namespace ARMDel.Domain.Entities
     {
         public float Weight { get; }
         public string Ingredients { get; }
-        public Dish(string Title, float Price, float Weight, string Ingredients) : base(Title, Price)
+        public Dish(string Title, decimal Price, float Weight, string Ingredients) : base(Title, Price)
         {
             this.Weight = Weight;
             this.Ingredients = Ingredients;
@@ -44,7 +44,7 @@ namespace ARMDel.Domain.Entities
     }
     public class OtherProduct : Product
     {
-        public OtherProduct(string Title, float Price) : base(Title, Price)
+        public OtherProduct(string Title, decimal Price) : base(Title, Price)
         {
         }
     }

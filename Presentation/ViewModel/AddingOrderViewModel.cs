@@ -1,8 +1,10 @@
 ﻿using ARMDel.Domain.Entities;
+using ARMDel.Domain.UseCases;
 using ARMDel.Presentation.View;
 using Prism.Commands;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
@@ -15,9 +17,19 @@ using System.Windows.Input;
 
 namespace ARMDel.Presentation.ViewModel
 {
-    public class AddingOrderViewModel: DependencyObject
+    public class AddingOrderViewModel : DependencyObject
     {
         #region PROPERTYS
+
+        public ICollectionView InOrder
+        {
+            get { return (ICollectionView)GetValue(InOrderProperty); }
+            set { SetValue(InOrderProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for InOrder.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty InOrderProperty =
+            DependencyProperty.Register("InOrder", typeof(ICollectionView), typeof(AddingOrderViewModel), new PropertyMetadata(null));
 
 
 
@@ -53,6 +65,19 @@ namespace ARMDel.Presentation.ViewModel
         // Using a DependencyProperty as the backing store for SelectedDish.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedDishProperty =
             DependencyProperty.Register("SelectedDish", typeof(Dish), typeof(AddingOrderViewModel), new PropertyMetadata(null));
+
+
+
+        public Tuple<Dish, int, string> SelectedProduct
+        {
+            get { return (Tuple<Dish, int, string>)GetValue(SelectedProductProperty); }
+            set { SetValue(SelectedProductProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SelectedProduct.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectedProductProperty =
+            DependencyProperty.Register("SelectedProduct", typeof(Tuple<Dish, int, string>), typeof(AddingOrderViewModel), new PropertyMetadata(null));
+
 
 
 
@@ -112,7 +137,7 @@ namespace ARMDel.Presentation.ViewModel
             }
         }
 
-        
+
 
         public ICollectionView DishList
         {
@@ -207,8 +232,8 @@ namespace ARMDel.Presentation.ViewModel
         // Using a DependencyProperty as the backing store for Street.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty StreetProperty =
             DependencyProperty.Register("Street", typeof(string), typeof(AddingOrderViewModel), new PropertyMetadata(""));
-       
-        
+
+
         public string Building
         {
             get { return (string)GetValue(BuildingProperty); }
@@ -326,21 +351,74 @@ namespace ARMDel.Presentation.ViewModel
         // Using a DependencyProperty as the backing store for OrderCost.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty OrderCostProperty =
             DependencyProperty.Register("OrderCost", typeof(decimal), typeof(AddingOrderViewModel), new PropertyMetadata(0m));
+
+        
         #endregion
 
-        public List<(Product product, int quantity, string note)> Products { get; }
+        AddingOrderInteractor  addingOrderInteractor = new AddingOrderInteractor(); 
+
+
         public ICommand AssignCourierCommand { get; }
         public ICommand AddDishCommand { get; }
         public ICommand AddQuantityCommand { get; }
         public ICommand ReduceQuantityCommand { get; }
+        public ICommand SaveDishCommand { get; }
+        public ICommand DeleteDishCommand { get; }
+
+        private List<Tuple<Dish, int, string>> Products = new List<Tuple<Dish, int, string>>();
+        private List<Tuple<Dish, int, string>> tuples = new List<Tuple<Dish, int, string>>();
+
         public AddingOrderViewModel()
         {
             CourierList = CollectionViewSource.GetDefaultView(DataManager.AllCouriers);
             DishList = CollectionViewSource.GetDefaultView(DataManager.AllDishes);
+            
+
             AssignCourierCommand = new DelegateCommand(TryAssignCourier);
             AddDishCommand = new DelegateCommand(TryAddDish);
             AddQuantityCommand = new DelegateCommand(AddQuantity);
             ReduceQuantityCommand = new DelegateCommand(ReduceQuantity);
+            SaveDishCommand = new DelegateCommand(SaveDish);
+            DeleteDishCommand = new DelegateCommand(TryDeleteDish);
+        }
+
+        private void TryDeleteDish()
+        {
+            try
+            {
+                DeleteDish();
+            }
+            catch (ArgumentException e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void DeleteDish()
+        {
+            if (SelectedProduct == null)
+                throw new ArgumentException("Сначала выберите блюдо из списка!");
+            else
+            {
+                for (int i = Products.Count - 1; i >= 0; i--)
+                {
+                    if (Products[i].Item1 == SelectedProduct.Item1)
+                        Products.Remove(Products[i]);
+                }
+                List<Tuple<Dish, int, string>> tuples = new List<Tuple<Dish, int, string>>(Products);
+                InOrder = CollectionViewSource.GetDefaultView(tuples);
+                OrderCost = addingOrderInteractor.CalcOrdrCost(tuples, DeliveryCost);
+            }
+        }
+
+        private void SaveDish()
+        {
+            Products.Add(Tuple.Create(SelectedDish, Quantity, Note));
+            Quantity = 1;
+            Note = "";
+            List<Tuple<Dish, int, string>> tuples = new List<Tuple<Dish, int, string>>(Products);
+            InOrder = CollectionViewSource.GetDefaultView(tuples);
+            OrderCost = addingOrderInteractor.CalcOrdrCost(tuples, DeliveryCost);
         }
 
         private void AddQuantity()
@@ -359,8 +437,7 @@ namespace ARMDel.Presentation.ViewModel
                 throw new ArgumentException("Сначала выберите блюдо из списка!");
             else
             {
-                var AddingOrderViewModel = new AddingOrderViewModel();
-                var dishInfo = new DishInfo() { DataContext = AddingOrderViewModel };
+                var dishInfo = new DishInfo() { DataContext = MainViewModel.AddingOrderViewModel};
                 dishInfo.ShowDialog();
             }
         }

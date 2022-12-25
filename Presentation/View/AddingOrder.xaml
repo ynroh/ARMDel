@@ -44,9 +44,25 @@
                 </TextBlock>
             </Border>
         </Border>
+        <StackPanel Margin="1030,134,76,265">
+            <ListBox 
+                Height="445"
+                ItemsSource="{Binding InOrder, UpdateSourceTrigger=Explicit}"
+                SelectedItem="{Binding SelectedProduct, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="5">
+                            <TextBlock FontSize="20" Foreground="#7407fe" Text="{Binding Path=Item1.Title}"/>
+                            <TextBlock FontSize="14" Text="{Binding Path=Item2}"/>
+                            <TextBlock FontSize="13" Text="{Binding Path=Item3}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
         <StackPanel 
             Orientation="Horizontal" Width="450" 
-            Margin="1030,640,76,142">
+            Margin="1030,644,76,142">
             <TextBox
                 IsReadOnly="True"
                 Width="200" Height="50"
@@ -240,9 +256,9 @@
                     SelectedItem="{Binding SelectedDish, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="370">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Margin="5">
+                            <StackPanel Margin="5" >
                                 <TextBlock FontSize="20" Text="{Binding Path=Title}"/>
-                                <TextBlock FontSize="14" Text="{Binding Path=Ingredients}"/>
+                                <TextBlock FontSize="14" Text="{Binding Path=Ingredients}" ScrollViewer.HorizontalScrollBarVisibility="Visible"/>
                                 <TextBlock FontSize="13" Text="{Binding Path=Price}"/>
                             </StackPanel>
                         </DataTemplate>
@@ -277,16 +293,16 @@
                             <StackPanel Margin="5">
                                 <TextBlock FontSize="20" Text="{Binding Path=CourierName}"/>
                                 <TextBlock FontSize="14">
-                                <TextBlock.Style>
-                                    <Style TargetType="{x:Type TextBlock}">
-                                        <Setter Property="Text" Value="Пеший курьер" />
-                                        <Style.Triggers>
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Text" Value="Пеший курьер" />
+                                            <Style.Triggers>
                                                 <DataTrigger Binding="{Binding Path=HasCar}" Value="True">
-                                                <Setter Property="Text" Value="Авто курьер" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
+                                                    <Setter Property="Text" Value="Авто курьер" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
                                 </TextBlock>
                             </StackPanel>
                         </DataTemplate>
@@ -299,6 +315,11 @@
                     Margin="0,20,0,0"
                     />
             </StackPanel>
+            <Button  
+            Command="{Binding DeleteDishCommand}"
+            Content="Удалить из заказа" Margin="500,325,1385,101"
+            Grid.Column="1" Grid.Row="1"
+            />
         </Grid>
         <!--Кнопка-->
         <StackPanel 

@@ -22,6 +22,7 @@ namespace ARMDel.Presentation.ViewModel
     public class MainViewModel: DependencyObject
     {
         private readonly ShowingOrderInteractor showingOrderInteractor = new ShowingOrderInteractor();
+        public readonly static AddingOrderViewModel AddingOrderViewModel = new AddingOrderViewModel();
         public string Name { get;}
         private readonly DateTime currentDate = new DateTime();
         private List<Order> OrdersByDate = new List<Order>();
@@ -115,7 +116,6 @@ namespace ARMDel.Presentation.ViewModel
 
         private void OpenAddOrderWindow()
         {
-            var AddingOrderViewModel = new AddingOrderViewModel();
             var addingOrderWindow = new AddingOrder() { DataContext = AddingOrderViewModel };
             addingOrderWindow.Show();
         }

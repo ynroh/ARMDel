@@ -108,6 +108,7 @@
     <Compile Include="Data\Repository\AutorizationRepository.cs" />
     <Compile Include="Domain\Entities\Address.cs" />
     <Compile Include="Domain\Entities\Admin.cs" />
+    <Compile Include="Domain\Entities\Calculator.cs" />
     <Compile Include="Domain\Entities\Client.cs" />
     <Compile Include="Domain\Entities\Courier.cs" />
     <Compile Include="Data\DataManager.cs" />

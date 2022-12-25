@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ARMDel.Presentation.View"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:viewmodel="clr-namespace:ARMDel.Presentation.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AddingOrderViewModel}"
         mc:Ignorable="d"
         Title="DishInfo" Height="250" Width="450" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
@@ -28,12 +29,12 @@
             Orientation="Vertical">
             <StackPanel
                 Orientation="Horizontal"
-                Width="150"
+                Width="155"
                 Margin="0,50,0,0"
                 HorizontalAlignment="Center">
                 <Button
                     Command="{Binding ReduceQuantityCommand}"
-                    Content="-"
+                    Content="-" Width="50"
                     Background="#FFAA83DA">
                 </Button>
                 <TextBox
@@ -46,7 +47,7 @@
                 </TextBox>
                 <Button
                     Command="{Binding AddQuantityCommand}"
-                    Margin="12,0,0,0"
+                    Margin="12,0,0,0" Width="50"
                     Content="+"
                     Background="#FFAA83DA">
                 </Button>
@@ -60,10 +61,19 @@
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="20">
             </TextBox>
             <Button
+                Command="{Binding SaveDishCommand}"
                 Content="Добавить"
                 Margin="60,10,0,0"
                 Width="320"
-                HorizontalAlignment="Left">
+                HorizontalAlignment="Left" Cursor="Hand">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:CallMethodAction MethodName="Close"
+                           TargetObject="{Binding RelativeSource={RelativeSource
+                                                  Mode=FindAncestor,
+                                                  AncestorType=Window}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </Button>
         </StackPanel>
     </Grid>
