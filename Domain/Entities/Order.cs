@@ -16,7 +16,7 @@ namespace ARMDel.Domain.Entities
         PaymentByCard,
         PaymentInCash
     };
-    public class Order 
+    public class Order : IOrder
     {
 
         public DateTime DateOfAdded { get; }

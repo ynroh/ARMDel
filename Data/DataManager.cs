@@ -15,7 +15,7 @@ namespace ARMDel.Domain.Entities
 
 
 
-        static private List<User> allUsers = new List<User>(); 
+        static private List<IUser> allUsers = new List<IUser>(); 
         static private List<Order> allOrders = new List<Order>();
         static private List<Dish> allDishes = new List<Dish>();
         static private List<OtherProduct> allOtherProducts = new List<OtherProduct>();
@@ -42,7 +42,7 @@ namespace ARMDel.Domain.Entities
             set { allAdmins = value; }
         }
 
-        static public List<User> AllUsers
+        static public List<IUser> AllUsers
         {
             get { return allUsers; }
         }

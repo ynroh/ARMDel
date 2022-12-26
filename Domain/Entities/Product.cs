@@ -1,8 +1,9 @@
-﻿using System;
+﻿using ARMDel.Domain.Entities.interfaces;
+using System;
 
 namespace ARMDel.Domain.Entities
 {
-    public abstract class Product
+    public abstract class Product : IProduct
     {
         public string Title { get; }
         public decimal Price { get; }

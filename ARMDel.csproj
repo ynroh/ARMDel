@@ -131,12 +131,17 @@
     <Compile Include="Domain\Entities\Courier.cs" />
     <Compile Include="Data\DataManager.cs" />
     <Compile Include="Domain\Entities\District.cs" />
+    <Compile Include="Domain\Entities\interfaces\IAddress.cs" />
+    <Compile Include="Domain\Entities\interfaces\ICalculator.cs" />
+    <Compile Include="Domain\Entities\interfaces\IClient.cs" />
+    <Compile Include="Domain\Entities\interfaces\ICourier.cs" />
+    <Compile Include="Domain\Entities\interfaces\IProduct.cs" />
     <Compile Include="Domain\Entities\Operator.cs" />
     <Compile Include="Domain\Entities\User.cs" />
     <Compile Include="Domain\Entities\Order.cs" />
     <Compile Include="Domain\Entities\Product.cs" />
-    <Compile Include="Domain\Repository\IOrder.cs" />
-    <Compile Include="Domain\Repository\IUser.cs" />
+    <Compile Include="Domain\Entities\interfaces\IOrder.cs" />
+    <Compile Include="Domain\Entities\interfaces\IUser.cs" />
     <Compile Include="Domain\UseCases\AddingOperatorInteractor.cs" />
     <Compile Include="Domain\UseCases\AddingOrderInteractor.cs" />
     <Compile Include="Domain\UseCases\AuthorizationInteractor.cs" />
@@ -258,7 +263,9 @@
   <ItemGroup>
     <None Include="Presentation\App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Domain\Repository\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Presentation\View\Images\ActiveCloseARM.png" />
     <Resource Include="Presentation\View\Images\ActiveMinimazeARM.png" />

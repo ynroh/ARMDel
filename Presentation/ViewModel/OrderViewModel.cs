@@ -10,7 +10,7 @@ namespace ARMDel.Presentation.ViewModel
 {
     public class OrderViewModel : IOrder, INotifyPropertyChanged
     {
-        public OrderViewModel(Order order)
+        public OrderViewModel(IOrder order)
         {
             this.DateOfAdded = order.DateOfAdded;
             this.Number = order.Number;

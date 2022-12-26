@@ -67,8 +67,8 @@ namespace ARMDel.Domain.UseCases
                 throw new ArgumentException("Имя клиента не заполнено!");
             else if (PhoneNumber == null)
                 throw new ArgumentNullException("Номер телефона не заполнен!");
-            else if (PhoneNumber.Length != 10)
-                throw new ArgumentNullException("Номер телефона должен содеражать 10 цифр!");
+            else if (PhoneNumber.Length != 11)
+                throw new ArgumentException("Номер телефона должен содержать 11 цифр!");
             else
                 return clientRepository.AddClient(ClientName, PhoneNumber, Address);
         }

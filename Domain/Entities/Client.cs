@@ -1,8 +1,9 @@
-﻿using System;
+﻿using ARMDel.Domain.Entities.interfaces;
+using System;
 
 namespace ARMDel.Domain.Entities
 {
-    public class Client
+    public class Client: IClient
     {
         public string ClientName { get; set; }
         public string PhoneNumber { get; set; }
@@ -14,7 +15,7 @@ namespace ARMDel.Domain.Entities
             bool NullClientName = ClientName == "";
             bool NullPhoneNumber = PhoneNumber == null;
             bool NullAddress = Address == null;
-            bool InvalidPhoneNumber = PhoneNumber.Length != 10;
+            bool InvalidPhoneNumber = PhoneNumber.Length != 11;
             if (NullClientName)
             {
                 isNormal = false;
@@ -33,7 +34,7 @@ namespace ARMDel.Domain.Entities
             else if(InvalidPhoneNumber)
             {
                 isNormal = false;
-                throw new ArgumentException("PhoneNumber must contain 10 digits");
+                throw new ArgumentException("PhoneNumber must contain 11 digits");
             }
             else 
             foreach(var num in PhoneNumber)

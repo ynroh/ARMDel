@@ -7,9 +7,9 @@ namespace ARMDel.Domain.UseCases
 {
     public class ShowingOrderInteractor
     {
-        public List<Order> FindOrderByDate(DateTime date)
+        public List<IOrder> FindOrderByDate(DateTime date)
         {
-         List<Order> foundOrders = new List<Order>();
+         List<IOrder> foundOrders = new List<IOrder>();
             foreach(var ord in DataManager.AllOrders)
                 if(ord.DateOfAdded == date)
                     foundOrders.Add(ord);

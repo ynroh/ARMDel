@@ -19,7 +19,7 @@ namespace ARMDel.Presentation.ViewModel
         public string Name { get;}
         private readonly DateTime currentDate = new DateTime();
 
-        private List<Order> OrdersByDate = new List<Order>();
+        private List<IOrder> OrdersByDate = new List<IOrder>();
         public string Colour { get; set; }
 
         #region PROPERTYS

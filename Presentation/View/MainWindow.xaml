@@ -89,7 +89,7 @@
             </DatePicker>
             <ListBox Grid.Row="3" Grid.Column="0"
                      ItemsSource="{Binding OrderList, UpdateSourceTrigger=PropertyChanged}"
-                     SelectedItem="{Binding SelectedOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="185,34,315,79" Grid.ColumnSpan="2">
+                     SelectedItem="{Binding SelectedOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="185,34,315,89" Grid.ColumnSpan="2">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="5">
@@ -165,7 +165,7 @@
                     Width="600"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="14"/>
                 <TextBox IsReadOnly="True"
-                    Text="{Binding Cost, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Text="{Binding Cost, StringFormat={}{0} РУБ, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     materialDesign:HintAssist.Hint="Стоимость"
                     Width="600"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="14"/>

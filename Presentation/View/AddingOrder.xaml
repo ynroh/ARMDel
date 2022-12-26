@@ -53,7 +53,7 @@
                     <DataTemplate>
                         <StackPanel Margin="5">
                             <TextBlock FontSize="20" Foreground="#7407fe" Text="{Binding Path=Item1.Title}"/>
-                            <TextBlock FontSize="14" Text="{Binding Path=Item2}"/>
+                            <TextBlock FontSize="14" Text="{Binding Path=Item2, StringFormat={}{0} шт}"/>
                             <TextBlock FontSize="13" Text="{Binding Path=Item3}"/>
                         </StackPanel>
                     </DataTemplate>
@@ -66,13 +66,13 @@
             <TextBox
                 IsReadOnly="True"
                 Width="200" Height="50"
-                Text="{Binding DeliveryCost}"
+                Text="{Binding DeliveryCost, StringFormat={}{0} РУБ}"
                 materialDesign:HintAssist.Hint="Стоимость доставки" 
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="16"/>
             <TextBox
                 IsReadOnly="True"
                 Width="200" Height="50"
-                Text="{Binding OrderCost}"
+                Text="{Binding OrderCost, StringFormat={}{0} РУБ}"
                 Margin="30,0,0,0"
                 HorizontalAlignment="Left"
                 materialDesign:HintAssist.Hint="Сумма заказа" 
@@ -259,7 +259,8 @@
                             <StackPanel Margin="5" >
                                 <TextBlock FontSize="20" Text="{Binding Path=Title}"/>
                                 <TextBlock FontSize="14" Text="{Binding Path=Ingredients}" ScrollViewer.HorizontalScrollBarVisibility="Visible"/>
-                                <TextBlock FontSize="13" Text="{Binding Path=Price}"/>
+                                <TextBlock FontSize="13" Text="{Binding Path=Price, StringFormat={}{0} РУБ}"/>
+                                <TextBlock FontSize="13" Text="{Binding Path=Weight, StringFormat={}{0} г}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

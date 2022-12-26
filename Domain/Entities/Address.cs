@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ARMDel.Domain.Entities.interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ARMDel.Domain.Entities
 {
-    public class Address
+    public class Address: IAddress
     { 
         public string District { get; }
         public string Street { get; set; }
