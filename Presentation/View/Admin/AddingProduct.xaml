@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ARMDel.Presentation.View"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewmodel="clr-namespace:ARMDel.Presentation.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AddingProductViewModel}"
         mc:Ignorable="d"
         Title="AddingOperator" Height="350" Width="780" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Background>
@@ -48,10 +48,12 @@
                     <RadioButton x:Name="DishRadioB"
                         Content="Новое блюдо"
                         Foreground="#6c6c6c" 
-                        FontSize="16">
+                        FontSize="16"
+                        IsChecked="{Binding NewDish}">
                     </RadioButton>
                     <RadioButton x:Name="OtherProductRadioB"
-                        Margin="30,0,0,0"
+                        IsChecked="{Binding NewOtherProduct}"
+                                 Margin="30,0,0,0"
                         Content="Новый дополнительный продукт"
                         Foreground="#6c6c6c" 
                         FontSize="16">
@@ -59,11 +61,13 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBox x:Name="Title"
+                             Text="{Binding Title}"
                     Width="280"
                     materialDesign:HintAssist.Hint="Название" 
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="16">
                     </TextBox>
                     <TextBox x:Name="Price"
+                             Text="{Binding Price}"
                     Margin="60,0,0,0"
                     Width="280"
                     materialDesign:HintAssist.Hint="Цена" 
@@ -79,26 +83,23 @@
                     <TextBox x:Name="Ingredients"
                         Width="280"
                         materialDesign:HintAssist.Hint="Состав" 
+                             Text="{Binding Ingredients}"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="16"
                         Visibility="{Binding IsChecked,ElementName=DishRadioB,Converter={StaticResource b2v}}">
                     </TextBox>
                     <TextBox x:Name="Weight"
                         Margin="60,0,0,0"
                         Width="280"
+                             Text="{Binding Weight}"
                         materialDesign:HintAssist.Hint="Вес" 
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Segoe UI" FontSize="16"
                         Visibility="{Binding IsChecked,ElementName=DishRadioB,Converter={StaticResource b2v}}">
                     </TextBox>
                 </StackPanel>
                 <Button x:Name="AddProduct"
+                        Command="{Binding AddNewProductCommand}"
                     Margin="0,30,0,0"
                     Content="Добавить">
-                </Button>
-                <Button x:Name="AddPCancel"
-                    Margin="0,20,0,0"
-                    Content="Отмена"
-                        Background="#FFBBA1DD"
-                    BorderBrush="LightGray">
                 </Button>
             </StackPanel>
         </Grid>

@@ -1,19 +1,11 @@
 ﻿using ARMDel.Domain.Entities;
 using ARMDel.Domain.UseCases;
 using ARMDel.Presentation.View;
-using GalaSoft.MvvmLight.Command;
 using Prism.Commands;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Globalization;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 

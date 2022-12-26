@@ -223,5 +223,42 @@
     "DeliveryPrice": 0.0,
     "PaymentMethod": 0,
     "Cost": 2228.0
+  },
+  {
+    "DateOfAdded": "2022-12-26T00:00:00+07:00",
+    "Number": 6,
+    "OperatorName": "Кунина Александра Олеговна",
+    "Client": {
+      "ClientName": "Мулик Роман Данилович",
+      "PhoneNumber": "89139592386",
+      "Address": {
+        "District": "Кировский",
+        "Street": "Красноярская",
+        "Building": "22",
+        "Apartment": 2,
+        "Entrance": 2,
+        "Floor": 1,
+        "HasIntercom": false
+      }
+    },
+    "Products": [
+      {
+        "Item1": {
+          "Weight": 100.0,
+          "Ingredients": "",
+          "Title": "Соевый соус",
+          "Price": 50.0
+        },
+        "Item2": 1,
+        "Item3": ""
+      }
+    ],
+    "Courier": {
+      "CourierName": "Томилов Матвей Денисович",
+      "HasCar": true
+    },
+    "DeliveryPrice": 400.0,
+    "PaymentMethod": 0,
+    "Cost": 450.0
   }
 ]

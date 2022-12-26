@@ -121,6 +121,7 @@
     </ApplicationDefinition>
     <Compile Include="Data\Repository\AddingAddressRepository.cs" />
     <Compile Include="Data\Repository\AddingClientRepository.cs" />
+    <Compile Include="Data\Repository\AddingNewProductRepository.cs" />
     <Compile Include="Data\Repository\AddingOrderRepository.cs" />
     <Compile Include="Data\Repository\AutorizationRepository.cs" />
     <Compile Include="Data\Repository\AddingOperatorRepository.cs" />
@@ -142,12 +143,14 @@
     <Compile Include="Domain\Entities\Product.cs" />
     <Compile Include="Domain\Entities\interfaces\IOrder.cs" />
     <Compile Include="Domain\Entities\interfaces\IUser.cs" />
+    <Compile Include="Domain\UseCases\AddingNewProductInteractor.cs" />
     <Compile Include="Domain\UseCases\AddingOperatorInteractor.cs" />
     <Compile Include="Domain\UseCases\AddingOrderInteractor.cs" />
     <Compile Include="Domain\UseCases\AuthorizationInteractor.cs" />
     <Compile Include="Domain\UseCases\ShowOrderInteractor.cs" />
     <Compile Include="Presentation\ViewModel\AddingOperatorViewModel.cs" />
     <Compile Include="Presentation\ViewModel\AddingOrderViewModel.cs" />
+    <Compile Include="Presentation\ViewModel\AddingProductViewModel.cs" />
     <Compile Include="Presentation\ViewModel\AdminMenuViewModel.cs" />
     <Compile Include="Presentation\ViewModel\AuthorizationViewModel.cs" />
     <Compile Include="Presentation\ViewModel\BaseViewModel.cs" />

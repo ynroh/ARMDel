@@ -138,7 +138,19 @@ namespace ARMDel.Domain.Entities
             File.WriteAllText(fileName, json);
         }
 
-       
+        public static void SerializeDishes()
+        {
+            string fileName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\..\Data\Files\Dishes.json";
+            string json = JsonConvert.SerializeObject(AllDishes, Formatting.Indented);
+            File.WriteAllText(fileName, json);
+        }
+
+        public static void SerializeOtherProducts()
+        {
+            string fileName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\..\Data\Files\OtherProducts.json";
+            string json = JsonConvert.SerializeObject(AllOtherProducts, Formatting.Indented);
+            File.WriteAllText(fileName, json);
+        }
 
         static public void AddOrder(Order order)
         {
@@ -154,6 +166,18 @@ namespace ARMDel.Domain.Entities
         static public void AddCourier(Courier courier)
         {
             AllCouriers.Add(courier);
+        }
+
+        static public void AddDish(Dish dish)
+        {
+            AllDishes.Add(dish);
+            SerializeDishes();
+        }
+
+        static public void AddOtherProduct(OtherProduct otherProduct)
+        { 
+            AllOtherProducts.Add(otherProduct);
+            SerializeOtherProducts();
         }
     }
 }

@@ -91,18 +91,10 @@
                     </TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                <Button x:Name="PrCancel"
-                    HorizontalAlignment="Left"
-                    Margin="0,60,0,0"
-                    Width="200" Height="40"
-                    Content="Отмена"
-                    Background="#FFBBA1DD"
-                    BorderBrush="LightGray">
-                </Button>
-                <Button x:Name="Change"
+                    <Button x:Name="Change"
                     HorizontalAlignment="Right"
-                    Margin="20,60,0,0"
-                    Width="200" Height="40"
+                    Margin="10,60,0,0"
+                    Width="400" Height="40"
                     Content="Изменить">
                 </Button>
                 </StackPanel>
